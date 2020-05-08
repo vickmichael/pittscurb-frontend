@@ -1,6 +1,5 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { Map, TileLayer, GeoJSON } from 'react-leaflet';
+import { Map, TileLayer, Polyline } from 'react-leaflet';
 
 import styled from 'styled-components';
 
@@ -48,7 +47,10 @@ const StyledMap = styled(Map)`
 
 const sources = ['esriWorldImagery', 'Stamen_TonerLabels'];
 
-export default ({ sourceKeys = sources }) => {
+export default ({
+  coordData,
+  sourceKeys = sources
+}) => {
 
   return (
     <StyledMap
@@ -57,7 +59,6 @@ export default ({ sourceKeys = sources }) => {
       zoom={zoom}
       zoomControl={false}
     >
-      <GeoJSON key="test" data={null} />
       {sourceKeys.map(key => (
         <TileLayer
           maxNativeZoom={mapSources[key].maxNativeZoom}
@@ -67,6 +68,14 @@ export default ({ sourceKeys = sources }) => {
           url={mapSources[key].url}
           attribution={false ? mapSources[key].attribution : ''}
           style={{opacity: 0.1}}
+        />
+      ))}
+      {coordData.map((line, i) => (
+        <Polyline
+          key={`line${i}`}
+          weight={5}
+          color="#ffaa00"
+          positions={[line.geometry.coordinates]}
         />
       ))}
     </ StyledMap>
