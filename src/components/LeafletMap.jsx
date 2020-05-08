@@ -1,5 +1,5 @@
 import React from 'react';
-import { Map, TileLayer, Polyline } from 'react-leaflet';
+import { Map, TileLayer, Polyline, Tooltip } from 'react-leaflet';
 
 import styled from 'styled-components';
 
@@ -49,6 +49,7 @@ const sources = ['esriWorldImagery', 'Stamen_TonerLabels'];
 
 export default ({
   coordData,
+  lineStyles,
   sourceKeys = sources
 }) => {
 
@@ -73,10 +74,18 @@ export default ({
       {coordData.map((line, i) => (
         <Polyline
           key={`line${i}`}
-          weight={5}
-          color="#ffaa00"
+          weight={8}
+          lineCap="square"
+          dashArray={lineStyles[line.properties.category].dashArray}
+          color={lineStyles[line.properties.category].color}
           positions={[line.geometry.coordinates]}
-        />
+        >
+          <Tooltip>
+            {Object.keys(line.properties).map(property => (
+              <div><span>{property}: </span><span>{line.properties[property]}</span></div>
+            ))}
+          </Tooltip>
+        </Polyline>
       ))}
     </ StyledMap>
   );
