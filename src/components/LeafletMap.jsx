@@ -7,26 +7,33 @@ import styled from 'styled-components';
 const defaultLatLng = [40.4514974,-79.9902457]; // Pittsburgh strip
 
 const zoom = 18;
+
 const mapSources = {
   openStreetMap: {
     url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-    maxZoom: 24,
+    maxNativeZoom: 24,
     attribution: ''
-  },
-  openTopoMap: {
-    url: "https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png",
-    maxZoom: 24,
-    attribution: "&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
   },
   esriWorldImagery: {
     url: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}.png",
-    maxZoom: 24,
+    maxNativeZoom: 19,
     attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
   },
   OpenStreetMap_Mapnik: {
     url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-    maxZoom: 19,
+    maxNativeZoom: 19,
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  },
+  Stamen_TonerHybrid: {
+    url: 'https://stamen-tiles-{s}.a.ssl.fastly.net/toner-hybrid/{z}/{x}/{y}{r}.{ext}',
+    attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    maxNativeZoom: 20,
+    ext: 'png'
+  },
+  Stamen_TonerLabels: {
+    url: 'https://stamen-tiles-{s}.a.ssl.fastly.net/toner-labels/{z}/{x}/{y}{r}.{ext}',
+    attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    maxNativeZoom: 20,
   }
 };
 
@@ -39,7 +46,7 @@ const StyledMap = styled(Map)`
   z-index: -1;
 `;
 
-const sources = ["esriWorldImagery"];
+const sources = ['esriWorldImagery', 'Stamen_TonerLabels'];
 
 export default ({ sourceKeys = sources }) => {
 
@@ -53,10 +60,13 @@ export default ({ sourceKeys = sources }) => {
       <GeoJSON key="test" data={null} />
       {sourceKeys.map(key => (
         <TileLayer
-          maxZoom={mapSources[key].maxZoom}
+          maxNativeZoom={mapSources[key].maxNativeZoom}
+          maxZoom={22}
+          ext="png"
           key={key}
           url={mapSources[key].url}
           attribution={false ? mapSources[key].attribution : ''}
+          style={{opacity: 0.1}}
         />
       ))}
     </ StyledMap>
