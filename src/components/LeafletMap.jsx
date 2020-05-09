@@ -1,7 +1,8 @@
 import React from 'react';
-import { Map, TileLayer, Polyline, Tooltip } from 'react-leaflet';
-
+import { Map, Marker, TileLayer, Polyline, Tooltip } from 'react-leaflet';
 import styled from 'styled-components';
+
+import { getParkingSpots } from '../utils/spaceGeneration'
 
 const defaultLatLng = [40.4514974,-79.9902457]; // Pittsburgh strip
 
@@ -71,22 +72,33 @@ export default ({
           style={{opacity: 0.1}}
         />
       ))}
-      {coordData.map((line, i) => (
-        <Polyline
-          key={`line${i}`}
-          weight={8}
-          lineCap="square"
-          dashArray={lineStyles[line.properties.category].dashArray}
-          color={lineStyles[line.properties.category].color}
-          positions={[line.geometry.coordinates]}
-        >
-          <Tooltip>
-            {Object.keys(line.properties).map(property => (
-              <div><span>{property}: </span><span>{line.properties[property]}</span></div>
+      {coordData.map((line, i) => {
+        const spots = getParkingSpots(line, 0);
+
+        console.log(spots);
+
+        return (
+          <>
+            <Polyline
+              key={`line${i}`}
+              weight={8}
+              lineCap="square"
+              dashArray={lineStyles[line.properties.category].dashArray}
+              color={lineStyles[line.properties.category].color}
+              positions={[line.geometry.coordinates]}
+            >
+              <Tooltip>
+                {Object.keys(line.properties).map(property => (
+                  <div><span>{property}: </span><span>{line.properties[property]}</span></div>
+                ))}
+              </Tooltip>
+            </Polyline>
+            {spots.length && lineStyles[line.properties.category].color==='green' && spots.map(spot => (
+              <Marker position={spot} />
             ))}
-          </Tooltip>
-        </Polyline>
-      ))}
+          </>
+        );
+      })}
     </ StyledMap>
   );
 };
