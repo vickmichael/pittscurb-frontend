@@ -90,11 +90,15 @@ const mapSources = {
 
 const StyledMap = styled(Map)`
   position: fixed;
-  top: 0;
+  top: 5rem;
   left: 0;
-  height: 100vh;
+  height: calc(100vh - 5rem);
   width: 100vw;
   z-index: -1;
+
+  & .leaflet-tile-pane {
+    filter: grayscale(1) contrast(.5) brightness(1.2);
+  }
 `;
 
 const sourceKeys = ['esriWorldImagery', 'Stamen_TonerLabels'];
