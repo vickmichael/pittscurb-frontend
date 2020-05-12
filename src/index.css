@@ -1,8 +1,10 @@
 body {
   margin: 0;
   display: flex;
-  font-family: Gotham;
+  font-family: Muli, Roboto, sans-serif;
   position: relative;
+  height: calc(100% - 5rem);
+  top: 5rem;
 }
 
 *, * *, * > * { box-sizing: border-box; }
