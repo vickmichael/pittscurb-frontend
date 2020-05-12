@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import {
   useLocation
 } from "react-router-dom";
+import Logo from './Logo';
 
 const Container = styled.div`
   position: fixed;
@@ -24,7 +25,7 @@ export default ({ children }) => {
 
   return (
     <Container>
-      <h2>ParkingChair</h2>
+      <Logo color="#8D1EF8" textColor="#4C4C4C" />
       {location.pathname}
       {children}
     </Container>
