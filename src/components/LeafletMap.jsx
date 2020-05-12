@@ -93,7 +93,9 @@ export default ({
                 ))}
               </Tooltip>
             </Polyline>
-            {spots.length && lineStyles[line.properties.category].color==='green' && spots.map(spot => (
+            {spots.length &&
+              (lineStyles[line.properties.category].color==='green' || lineStyles[line.properties.category].color==='yellow') &&
+              spots.map(spot => (
               <Marker position={spot} />
             ))}
           </>
