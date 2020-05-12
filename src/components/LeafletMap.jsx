@@ -2,11 +2,12 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Map, TileLayer, GeoJSON } from 'react-leaflet';
 
+
 import styled from 'styled-components';
 
 const defaultLatLng = [40.4514974,-79.9902457]; // Pittsburgh strip
 
-const zoom = 18;
+const zoom = 15;
 const mapSources = {
   openStreetMap: {
     url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
@@ -41,7 +42,7 @@ const StyledMap = styled(Map)`
 
 const sources = ["esriWorldImagery"];
 
-export default ({ sourceKeys = sources }) => {
+export default ({ sourceKeys = sources, geoJson }) => {
 
   return (
     <StyledMap
@@ -50,7 +51,7 @@ export default ({ sourceKeys = sources }) => {
       zoom={zoom}
       zoomControl={false}
     >
-      <GeoJSON key="test" data={null} />
+      <GeoJSON key="test" data={geoJson} />
       {sourceKeys.map(key => (
         <TileLayer
           maxZoom={mapSources[key].maxZoom}

@@ -1,6 +1,9 @@
 import React from 'react';
-import LeafletMap from './components/LeafletMap';
+import CreateZone from './components/CreateZone/index';
 
 export default () => (
-  <LeafletMap />
+  <>
+    <CreateZone />
+   
+  </>
 )
