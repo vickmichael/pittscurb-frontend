@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { Map, TileLayer, GeoJSON } from 'react-leaflet';
 
@@ -42,8 +42,55 @@ const StyledMap = styled(Map)`
 
 const sources = ["esriWorldImagery"];
 
-export default ({ sourceKeys = sources, geoJson }) => {
 
+const style = (feature) => {
+  return {
+    color: '#ffffff',
+    weight: 2,
+    fillColor: "#ffffff",
+    fillOpacity: 0.2
+  };
+}
+
+// highlight on mouseOver
+const highlightFeature = (e) => {
+  const layer = e.target;
+
+  layer.setStyle({
+      fillColor: '#3388ff',
+      fillOpacity: 0.6
+  });
+}
+// reset default style on mouseOut
+const resetHighlight = (component, e) => {
+  const layer = e.target;
+
+  layer.setStyle({
+     fillColor: '#ffffff',
+     fillOpacity: 0.2,
+  });
+}
+const selectFeature = (e) => {
+  const layer = e.target;
+  layer.setStyle({
+    fillColor: '#3388ff',
+      fillOpacity: 0.75
+ });
+ 
+}
+
+// `component` is now the first argument, since it's passed through the Function.bind method, we'll need to pass it through here to the relevant handlers
+function onEachFeature (component, feature, layer) {
+  layer.on({
+    mouseover: highlightFeature,
+    mouseout: resetHighlight.bind(null, component),
+    click: selectFeature
+  });
+}
+
+
+export default ({ sourceKeys = sources, geoJson }) => {
+  const geoJsonRef = useRef(null)
   return (
     <StyledMap
       id="mapId"
@@ -51,7 +98,8 @@ export default ({ sourceKeys = sources, geoJson }) => {
       zoom={zoom}
       zoomControl={false}
     >
-      <GeoJSON key="test" data={geoJson} />
+      <GeoJSON key="test" data={geoJson} style={style} onEachFeature={onEachFeature.bind(null, this)}
+             ref={geoJsonRef} />
       {sourceKeys.map(key => (
         <TileLayer
           maxZoom={mapSources[key].maxZoom}
