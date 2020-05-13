@@ -1,17 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Map,
   Marker,
   TileLayer,
-  Polygon,
   Polyline,
   Tooltip
 } from 'react-leaflet';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
 import rawCoord from '../mockData/coord-data.json';
 import { lineStyles, mapSources, zoom } from '../constants/map';
 import { getParkingSpots } from '../utils/spaceGeneration'
+import DrawingTool from './DrawingTool';
 
 const defaultLatLng = [40.4514974,-79.9902457]; // Somewhere in Pittsburgh
 
@@ -38,9 +39,10 @@ const StyledMap = styled(Map)`
 const mapLayerKeys = ['esriWorldImagery', 'Stamen_TonerLabels'];
 
 export default () => {
-  const [polygon, setPolygon] = useState([]);
-  const handleMapClick = ({ latlng, containerPoint, layerPoint }) => {
-    setPolygon([...polygon, latlng]);
+  const dispatch = useDispatch();
+
+  const handleMapClick = ({ latlng }) => {
+    dispatch({type: 'ADD_POLYGON_POINT', value: latlng});
   };
 
   return (
@@ -87,10 +89,10 @@ export default () => {
                 <Marker position={spot} />
               )) : null
             }
-            <Polygon positions={polygon} />
           </>
         );
       })}
+      <DrawingTool />
     </ StyledMap>
   );
 };

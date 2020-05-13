@@ -4,9 +4,28 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+
+const initialState = {
+  draftPolygon: []
+};
+
+const rootReducer = ( state = initialState, action ) => {
+  switch (action.type) {
+    case 'ADD_POLYGON_POINT':
+      return {...state, draftPolygon: [...state.draftPolygon, action.value]}
+    default:
+      return state
+  }
+};
+const store = createStore(rootReducer)
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
