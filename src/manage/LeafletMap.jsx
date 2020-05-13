@@ -39,14 +39,6 @@ const StyledMap = styled(Map)`
 
 const mapLayerKeys = ['esriWorldImagery', 'Stamen_TonerLabels'];
 
-/*
-  This component is VERY slow to re-render
-  DO NOT add local state or consume redux
-  DO NOT do anything that causes a re-render
-
-  if you need a child to get state, store it in redux
-  - dispatch from this file if need-be and consume it in the child component directly
-*/
 export default () => {
   const dispatch = useDispatch();
 
