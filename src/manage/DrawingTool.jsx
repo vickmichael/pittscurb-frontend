@@ -13,7 +13,6 @@ export default () => {
     evt.originalEvent.view.L.DomEvent.stopPropagation(evt);
   };
 
-
   return (
     <>
       <Polygon positions={dynamicPositions} />

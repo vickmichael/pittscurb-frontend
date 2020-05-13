@@ -98,6 +98,14 @@ export default () => {
               </Tooltip>
             </Polyline>
             {spots.length ?
+              /*
+                This mapping is VERY slow to re-render at the moment
+                DO NOT add local state or consume redux to the leaflet map at the moment
+                DO NOT do anything that causes a re-render of the leaflet map (until this spot generation is pulled out)
+
+                if you need a child to get state, store it in redux
+                - dispatch from this file if need-be and consume it in the child component directly
+              */
               (lineStyles[line.properties.category].color==='green' || lineStyles[line.properties.category].color==='yellow') &&
               spots.map((spot, i) => (
                 <Marker key={`spot${i}`} position={spot} />
