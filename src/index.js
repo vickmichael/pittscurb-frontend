@@ -10,7 +10,8 @@ import { createStore } from 'redux';
 const initialState = {
   areas: [],
   draftPolygon: [],
-  mousePosition: {lat: 0, lng: 0}
+  mousePosition: {lat: 0, lng: 0},
+  boundaries: [],
 };
 
 const rootReducer = ( state = initialState, action ) => {
@@ -26,6 +27,13 @@ const rootReducer = ( state = initialState, action ) => {
       return {...state, draftPolygon: [...state.draftPolygon, action.value]}
     case 'UPDATE_MOUSE_POSITION':
       return {...state, mousePosition: action.value}
+    case 'ADD_BOUNDARIES':
+      return {...state, boundaries: [...state.boundaries, action.value]}
+    case 'REMOVE_BOUNDARIES':
+      const newBoundaries = state.boundaries;
+      newBoundaries.splice(action.value, 1);
+      console.log(newBoundaries)
+      return {...state, boundaries: newBoundaries}
     default:
       return state
   }

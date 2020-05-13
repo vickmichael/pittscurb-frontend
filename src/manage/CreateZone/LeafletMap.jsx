@@ -1,6 +1,5 @@
 import React, { useRef } from 'react';
-import { useSelector } from 'react-redux';
-import { Map, TileLayer, GeoJSON } from 'react-leaflet';
+import { useSelector, useDispatch } from 'react-redux';import { Map, TileLayer, GeoJSON } from 'react-leaflet';
 
 
 import styled from 'styled-components';
@@ -43,6 +42,7 @@ const StyledMap = styled(Map)`
 const sources = ["esriWorldImagery"];
 
 
+
 const style = (feature) => {
   return {
     color: '#ffffff',
@@ -51,46 +51,49 @@ const style = (feature) => {
     fillOpacity: 0.2
   };
 }
-
-// highlight on mouseOver
-const highlightFeature = (e) => {
-  const layer = e.target;
-
-  layer.setStyle({
-      fillColor: '#3388ff',
-      fillOpacity: 0.6
-  });
-}
-// reset default style on mouseOut
-const resetHighlight = (component, e) => {
-  const layer = e.target;
-
-  layer.setStyle({
-     fillColor: '#ffffff',
-     fillOpacity: 0.2,
-  });
-}
-const selectFeature = (e) => {
-  const layer = e.target;
-  layer.setStyle({
-    fillColor: '#3388ff',
-      fillOpacity: 0.75
- });
- 
-}
-
-// `component` is now the first argument, since it's passed through the Function.bind method, we'll need to pass it through here to the relevant handlers
-function onEachFeature (component, feature, layer) {
-  layer.on({
-    mouseover: highlightFeature,
-    mouseout: resetHighlight.bind(null, component),
-    click: selectFeature
-  });
-}
-
-
 export default ({ sourceKeys = sources, geoJson }) => {
+  const {  boundaries }  = useSelector(state => state);
+  const dispatch = useDispatch();
   const geoJsonRef = useRef(null)
+
+  
+  
+  // highlight on mouseOver
+  const highlightFeature = (e) => {
+    const layer = e.target;
+  
+    layer.setStyle({
+        fillColor: '#3388ff',
+        fillOpacity: 0.6
+    });
+  }
+  // reset default style on mouseOut
+  const resetHighlight = (e) => {
+    const layer = e.target;
+  
+    layer.setStyle({
+       fillColor: '#ffffff',
+       fillOpacity: 0.2,
+    });
+  }
+  const selectFeature = (e) => {
+    const layer = e.target;
+    layer.setStyle({
+      fillColor: '#3388ff',
+      fillOpacity: 0.75
+    }); 
+    dispatch({type: 'ADD_BOUNDARIES', value: layer.feature.properties.Neighborhood_2010_HOOD})
+  }
+  
+  // `component` is now the first argument, since it's passed through the Function.bind method, we'll need to pass it through here to the relevant handlers
+  function onEachFeature (component, feature, layer) {
+    layer.on({
+      mouseover: highlightFeature,
+      mouseout: resetHighlight,
+      click: selectFeature
+    });
+  }
+
   return (
     <StyledMap
       id="mapId"
@@ -98,8 +101,12 @@ export default ({ sourceKeys = sources, geoJson }) => {
       zoom={zoom}
       zoomControl={false}
     >
-      <GeoJSON key="test" data={geoJson} style={style} onEachFeature={onEachFeature.bind(null, this)}
-             ref={geoJsonRef} />
+      <GeoJSON
+        key="test"
+        data={geoJson}
+        style={style}
+        onEachFeature={onEachFeature.bind(null, this)}
+        ref={geoJsonRef} />
       {sourceKeys.map(key => (
         <TileLayer
           maxZoom={mapSources[key].maxZoom}
