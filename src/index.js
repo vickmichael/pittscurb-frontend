@@ -4,9 +4,47 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+
+const initialState = {
+  areas: [],
+  draftPolygon: [],
+  mousePosition: {lat: 0, lng: 0}
+};
+
+const rootReducer = ( state = initialState, action ) => {
+  switch (action.type) {
+    case 'FINISH_AREA':
+      return {...state, areas: [...state.areas, state.draftPolygon], draftPolygon: []}
+    case 'DELETE_AREA':
+      const newAreas = state.areas;
+      newAreas.splice(action.value, 1);
+      console.log(newAreas)
+      return {...state, areas: newAreas}
+    case 'ADD_POLYGON_POINT':
+      return {...state, draftPolygon: [...state.draftPolygon, action.value]}
+    case 'UPDATE_MOUSE_POSITION':
+      return {...state, mousePosition: action.value}
+    default:
+      return state
+  }
+};
+const store = createStore(
+  rootReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
+
+// prevent right click menu from opening
+window.oncontextmenu = () => {
+  return false;
+}
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
