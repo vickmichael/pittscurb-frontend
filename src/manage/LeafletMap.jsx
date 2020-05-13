@@ -4,6 +4,7 @@ import {
   Marker,
   TileLayer,
   Polyline,
+  Polygon,
   Tooltip
 } from 'react-leaflet';
 import { useDispatch } from 'react-redux';
@@ -13,6 +14,7 @@ import rawCoord from '../mockData/coord-data.json';
 import { lineStyles, mapSources, zoom } from '../constants/map';
 import { getParkingSpots } from '../utils/spaceGeneration'
 import DrawingTool from './DrawingTool';
+import AreaLayer from './AreaLayer';
 
 const defaultLatLng = [40.4514974,-79.9902457]; // Somewhere in Pittsburgh
 
@@ -38,11 +40,27 @@ const StyledMap = styled(Map)`
 
 const mapLayerKeys = ['esriWorldImagery', 'Stamen_TonerLabels'];
 
+/*
+  This component is VERY slow to re-render
+  DO NOT add local state or consume redux
+  DO NOT do anything that causes a re-render
+
+  if you need a child to get state, store it in redux
+  - dispatch from this file if need-be and consume it in the child component directly
+*/
 export default () => {
   const dispatch = useDispatch();
 
+  const handleMouseMove = ({ latlng }) => {
+    dispatch({ type: 'UPDATE_MOUSE_POSITION', value: latlng });
+  };
   const handleMapClick = ({ latlng }) => {
-    dispatch({type: 'ADD_POLYGON_POINT', value: latlng});
+    dispatch({ type: 'ADD_POLYGON_POINT', value: latlng });
+  };
+  const handleKeyDown = ({ originalEvent }) => {
+    if(originalEvent.code === 'Enter') {
+      dispatch({ type: 'FINISH_AREA' });
+    }
   };
 
   return (
@@ -52,7 +70,10 @@ export default () => {
       zoom={zoom}
       zoomControl={false}
       onClick={handleMapClick}
+      onMouseMove={handleMouseMove}
+      onKeyDown={handleKeyDown}
     >
+
       {mapLayerKeys.map(key => (
         <TileLayer
           maxNativeZoom={mapSources[key].maxNativeZoom}
@@ -64,6 +85,7 @@ export default () => {
           style={{opacity: 0.1}}
         />
       ))}
+
       {processCoordData.map((line, i) => {
         const spots = getParkingSpots(line, 0);
 
@@ -92,7 +114,9 @@ export default () => {
           </>
         );
       })}
+
       <DrawingTool />
+      <AreaLayer />
     </ StyledMap>
   );
 };

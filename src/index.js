@@ -8,18 +8,27 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
 const initialState = {
-  draftPolygon: []
+  areas: [],
+  draftPolygon: [],
+  mousePosition: {lat: 0, lng: 0}
 };
 
 const rootReducer = ( state = initialState, action ) => {
   switch (action.type) {
+    case 'FINISH_AREA':
+      return {...state, areas: [...state.areas, state.draftPolygon], draftPolygon: []}
     case 'ADD_POLYGON_POINT':
       return {...state, draftPolygon: [...state.draftPolygon, action.value]}
+    case 'UPDATE_MOUSE_POSITION':
+      return {...state, mousePosition: action.value}
     default:
       return state
   }
 };
-const store = createStore(rootReducer)
+const store = createStore(
+  rootReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 ReactDOM.render(
   <React.StrictMode>

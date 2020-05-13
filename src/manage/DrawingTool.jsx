@@ -3,10 +3,11 @@ import { useSelector } from 'react-redux';
 import { Polygon } from 'react-leaflet';
 
 export default () => {
-  const draftPolygon = useSelector(state => state.draftPolygon);
-  console.log(draftPolygon);
+  const { draftPolygon, mousePosition } = useSelector(state => state);
+
+  const dynamicPositions = draftPolygon.length ? [...draftPolygon, mousePosition] : [draftPolygon];
 
   return (
-    <Polygon positions={draftPolygon} />
+    <Polygon positions={dynamicPositions} />
   );
 }
