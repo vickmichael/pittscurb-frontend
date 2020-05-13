@@ -4,7 +4,6 @@ import {
   Marker,
   TileLayer,
   Polyline,
-  Polygon,
   Tooltip
 } from 'react-leaflet';
 import { useDispatch } from 'react-redux';
@@ -54,7 +53,8 @@ export default () => {
   const handleMouseMove = ({ latlng }) => {
     dispatch({ type: 'UPDATE_MOUSE_POSITION', value: latlng });
   };
-  const handleMapClick = ({ latlng }) => {
+  const handleMapClick = ({ originalEvent, latlng }) => {
+    console.log(originalEvent);
     dispatch({ type: 'ADD_POLYGON_POINT', value: latlng });
   };
   const handleKeyDown = ({ originalEvent }) => {
@@ -101,14 +101,14 @@ export default () => {
             >
               <Tooltip>
                 {Object.keys(line.properties).map(property => (
-                  <div><span>{property}: </span><span>{line.properties[property]}</span></div>
+                  <div key={property}><span>{property}: </span><span>{line.properties[property]}</span></div>
                 ))}
               </Tooltip>
             </Polyline>
             {spots.length ?
               (lineStyles[line.properties.category].color==='green' || lineStyles[line.properties.category].color==='yellow') &&
-              spots.map(spot => (
-                <Marker position={spot} />
+              spots.map((spot, i) => (
+                <Marker key={`spot${i}`} position={spot} />
               )) : null
             }
           </>

@@ -1,9 +1,31 @@
 import React from 'react';
-import { Polygon } from 'react-leaflet';
-import { useSelector } from 'react-redux';
+import { Polygon, Popup } from 'react-leaflet';
+import { useSelector, useDispatch } from 'react-redux';
 
 export default () => {
   const areas = useSelector(state => state.areas);
+  const draftPolygon = useSelector(state => state.draftPolygon);
+  const dispatch = useDispatch();
 
-  return areas.map(area => <Polygon color="green" positions={area} onClick={evt => evt.originalEvent.stopPropagation()} />)
+  const handleAreaClick = evt => {
+    // the following if-statement allows clicks to pass through the polygon if they're drawing an area, and suppresses the Popup while drawing
+    if (!draftPolygon.length) {
+      evt.originalEvent.view.L.DomEvent.stopPropagation(evt);
+    }
+  }
+
+  const handleDelete = index => {
+    dispatch({ type: 'DELETE_AREA', value: index })
+  };
+
+  return areas.map((area, i) => (
+    <Polygon key={`area${i}`} color="green" positions={area} onClick={handleAreaClick}>
+      <Popup>
+        <h3>Spaces</h3>
+        <span>Suggested max: 13</span><br />
+        <input defaultValue={11} type="number" /><br />
+        <button onClick={() => handleDelete(i)}>DELETE</button>
+      </Popup>
+    </Polygon>
+  ))
 };
