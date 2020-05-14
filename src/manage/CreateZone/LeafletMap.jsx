@@ -53,9 +53,9 @@ const style = (feature) => {
   };
 }
 export default ({ sourceKeys = sources, geoJson }) => {
-  const boundaries = useSelector(state => state.boundaries);
+  // const boundaries = useSelector(state => state.boundaries);
   const dispatch = useDispatch();
-  const [selected, setSelected] = useState(['test']); 
+  // const [selected, setSelected] = useState(['test']); 
   const geoJsonRef = useRef(null)
 
   
@@ -66,12 +66,14 @@ export default ({ sourceKeys = sources, geoJson }) => {
   
     layer.setStyle({
         fillColor: '#3388ff',
-        fillOpacity: 0.6
+        fillOpacity: 0.6,
+        
     });
   }
   // reset default style on mouseOut
   const resetHighlight = (e) => {
     const layer = e.target;
+    const boundary = layer.feature.properties.Neighborhood_2010_HOOD;
     
     layer.setStyle({
        fillColor: '#ffffff',
@@ -80,14 +82,15 @@ export default ({ sourceKeys = sources, geoJson }) => {
   }
   const selectFeature = (e) => {
     const layer = e.target;
-    layer.setStyle({
-      fillColor: '#3388ff',
-      fillOpacity: 0.8
-    }); 
     const boundary = layer.feature.properties.Neighborhood_2010_HOOD;
     dispatch({
       type: 'TOGGLE_BOUNDARIES', value: boundary
     })
+    layer.setStyle({
+      fillColor: '#3388ff',
+      fillOpacity: 0.8
+    }); 
+   
   }
   
   // `component` is now the first argument, since it's passed through the Function.bind method, we'll need to pass it through here to the relevant handlers
@@ -95,8 +98,9 @@ export default ({ sourceKeys = sources, geoJson }) => {
     layer.on({
       mouseover: highlightFeature,
       mouseout: resetHighlight,
-      click: selectFeature
+      click: selectFeature,
     });
+    layer.bindPopup(layer.feature.properties.Neighborhood_2010_HOOD)
   }
 
   return (
