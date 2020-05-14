@@ -5,9 +5,9 @@ import { Map, TileLayer, GeoJSON } from 'react-leaflet';
 
 import styled from 'styled-components';
 
-const defaultLatLng = [40.4514974,-79.9902457]; // Pittsburgh strip
+const defaultLatLng = [40.4514974,-79.9902600]; // Pittsburgh strip
 
-const zoom = 15;
+const zoom = 12;
 const mapSources = {
   openStreetMap: {
     url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
@@ -32,12 +32,12 @@ const mapSources = {
 };
 
 const StyledMap = styled(Map)`
-  position: fixed;
-  top: 0;
-  left: 0;
+  // position: fixed;
+  // top: 0;
+  // left: 0;
   height: 100vh;
-  width: 100vw;
-  z-index: -1;
+  width: 67vw;
+  // z-index: -1; 
 `;
 
 const sources = ["esriWorldImagery"];
