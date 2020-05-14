@@ -57,8 +57,6 @@ export default ({ sourceKeys = sources, geoJson }) => {
   const dispatch = useDispatch();
   // const [selected, setSelected] = useState(['test']); 
   const geoJsonRef = useRef(null)
-
-  
   
   // highlight on mouseOver
   const highlightFeature = (e) => {
@@ -69,6 +67,7 @@ export default ({ sourceKeys = sources, geoJson }) => {
         fillOpacity: 0.6,
         
     });
+    layer.openPopup();
   }
   // reset default style on mouseOut
   const resetHighlight = (e) => {
@@ -79,6 +78,7 @@ export default ({ sourceKeys = sources, geoJson }) => {
        fillColor: '#ffffff',
        fillOpacity: 0.2,
     });
+    layer.closePopup();
   }
   const selectFeature = (e) => {
     const layer = e.target;
