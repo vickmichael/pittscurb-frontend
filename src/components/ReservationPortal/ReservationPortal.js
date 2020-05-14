@@ -1,20 +1,92 @@
 import React from 'react';
 import * as styles from './styles';
 
-import heroImage from './Reservation-Portal_Hero-Image.png'
+import SpotSearchCard from './SpotSearchCard';
+
+import burgerAndSoda from '../../common/svgs/burger_and_soda.svg';
+import arrow from '../../common/svgs/arrow.svg';
+import hamburger from '../../common/svgs/hamburger.svg';
+import cellphoneOuter from '../../common/svgs/cellphone_outer.svg'
 
 const ReservationPortal = () => {
   return (
-    <div>
-      <styles.HeroImage
-        src={heroImage}
-        alt="Map with highlighted parking area"
-      />
+    <styles.Wrapper>
+      <styles.Overlay>
+        <h2>
+          Find & reserve open parking spots
+        </h2>
 
-      <div>
-        Here is the Reservation Portal! Kneel before Zod!!!
-      </div>
-    </div>
+        <h4>
+          The up-to-date parking map for picking up anything from food to dry cleaning.
+        </h4>
+      </styles.Overlay>
+
+      <styles.SearchSection>
+        <SpotSearchCard />
+
+        <div>
+          <img src={arrow} alt=""/>
+
+          <div>
+            Closest spot to me
+          </div>
+        </div>
+
+        <div>
+          <img src={burgerAndSoda} alt=""/>
+
+          <div>
+            Local specials
+          </div>
+        </div>
+      </styles.SearchSection>
+
+      <styles.SalesPoints>
+        <h2>
+          The easiest way to search and save parking spaces, updated in real time.
+        </h2>
+
+        <div className="sales-points-list">
+          <div className="sales-point-item">
+            <img src={hamburger} alt=""/>
+
+            <div>
+              Search your destination, or find one near you
+            </div>
+          </div>
+
+          <div className="sales-point-item">
+            <img src={hamburger} alt=""/>
+
+            <div>
+              We’ll auto-find the best available spot
+            </div>
+          </div>
+
+          <div className="sales-point-item">
+            <img src={cellphoneOuter} alt=""/>
+
+            <div>
+              Reserve in one quick step, and we’ll text you any updates
+            </div>
+          </div>
+        </div>
+      </styles.SalesPoints>
+
+      <styles.Feedback>
+        <div className="feedback-content">
+          <div>
+            Questions? Feedback?
+          </div>
+
+          <div className="feedback-email">
+            <a href="">
+              Email us at help@getaspot.io
+            </a>
+          </div>
+        </div>
+      </styles.Feedback>
+    </styles.Wrapper>
   );
 }
 

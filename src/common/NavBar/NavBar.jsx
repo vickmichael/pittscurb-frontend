@@ -1,13 +1,13 @@
 import React from 'react';
-import {
-  useLocation
-} from "react-router-dom";
+// import {
+//   useLocation
+// } from "react-router-dom";
 // import Logo from '../Logo';
 
 import * as styles from "./styles";
 
 export default ({ children }) => {
-  const location = useLocation();
+  // const location = useLocation();
 
   return (
     <styles.Container>
@@ -23,7 +23,7 @@ export default ({ children }) => {
         </div>
       </styles.LogoContainer>
 
-      {location.pathname}
+      {/*{location.pathname}*/}
       {children}
     </styles.Container>
   );

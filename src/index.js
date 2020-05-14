@@ -14,9 +14,9 @@ const store = createStore(
 );
 
 // prevent right click menu from opening
-window.oncontextmenu = () => {
-  return false;
-}
+// window.oncontextmenu = () => {
+//   return false;
+// }
 
 ReactDOM.render(
   <React.StrictMode>

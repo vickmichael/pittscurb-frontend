@@ -4,11 +4,11 @@ export const Container = styled.div`
   position: fixed;
   top: 0px;
   left: 0px;
-  background-color: #ffffff40;
+  background-color: #ffffff00;
   width: 100%;
   height: 5rem;
-  box-shadow: 0rem .5rem 1rem rgba(0,0,0,0.25);
-  padding: 0 1.5rem;
+  padding: 0 4rem;
+  z-index: 50;
 
   display: flex;
   flex-direction: row nowrap;
