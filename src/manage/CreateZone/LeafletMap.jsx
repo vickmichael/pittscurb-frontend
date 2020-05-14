@@ -1,5 +1,5 @@
-import React, { useRef, useState, useCallback } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useRef } from 'react';
+import { useDispatch } from 'react-redux';
 import { Map, TileLayer, GeoJSON } from 'react-leaflet';
 
 
@@ -35,7 +35,7 @@ const StyledMap = styled(Map)`
   // position: fixed;
   // top: 0;
   // left: 0;
-  height: 100vh;
+  height: 100%;
   width: 67vw;
   // z-index: -1; 
 `;

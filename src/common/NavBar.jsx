@@ -18,6 +18,7 @@ const Container = styled.div`
   flex-direction: row nowrap;
   align-items: center;
   justify-content: space-between;
+  z-index: 499; //leaflet map sits around 500 for some reason
 `;
 
 export default ({ children }) => {

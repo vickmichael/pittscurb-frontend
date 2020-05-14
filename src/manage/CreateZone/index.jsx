@@ -11,6 +11,9 @@ const pittsburghNeighborhoods= require('../../mockData/Neighborhoods_with_SNAP_D
 const CreateZoneContainer = styled.div`
   display: flex;  
   flexflow: row wrap;
+  width: 100vw;
+  height: calc(100vh - 5rem);
+  
 `;
 export default () => {
 
