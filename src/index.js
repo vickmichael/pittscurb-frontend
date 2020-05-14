@@ -27,12 +27,12 @@ const rootReducer = ( state = initialState, action ) => {
       return {...state, draftPolygon: [...state.draftPolygon, action.value]}
     case 'UPDATE_MOUSE_POSITION':
       return {...state, mousePosition: action.value}
-    case 'ADD_BOUNDARIES':
-      return {...state, boundaries: [...state.boundaries, action.value]}
-    case 'REMOVE_BOUNDARIES':
-      const newBoundaries = state.boundaries;
-      newBoundaries.splice(action.value, 1);
-      console.log(newBoundaries)
+    case 'TOGGLE_BOUNDARIES':
+      const newBoundaries = state.boundaries.filter(boundary =>
+        boundary !== action.value)
+      if (newBoundaries.length === state.boundaries.length){
+        return {...state, boundaries: [...state.boundaries, action.value]}
+      } 
       return {...state, boundaries: newBoundaries}
     default:
       return state
