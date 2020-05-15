@@ -4,6 +4,7 @@ import LeafletMap from './LeafletMap';
 import NavBar from './NavBar';
 import ProjectList from './ProjectList';
 import ProjectDetail from './ProjectDetail';
+import CreateRegion from './CreateRegion';
 
 export {
   AreaLayer,
@@ -12,4 +13,5 @@ export {
   NavBar,
   ProjectList,
   ProjectDetail,
+  CreateRegion,
 };

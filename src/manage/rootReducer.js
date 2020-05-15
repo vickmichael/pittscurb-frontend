@@ -2,6 +2,8 @@ const initialState = {
   areas: [],
   draftPolygon: [],
   mousePosition: { lat: 0, lng: 0 },
+  boundaries: [],
+  regions: [],
 };
 
 export default (state = initialState, action) => {
@@ -40,6 +42,21 @@ export default (state = initialState, action) => {
         mousePosition: action.value,
       };
 
+    case 'TOGGLE_BOUNDARIES':
+      const newBoundaries = state.boundaries.filter((boundary) => boundary !== action.value);
+      if (newBoundaries.length === state.boundaries.length) {
+        return { ...state, boundaries: [...state.boundaries, action.value] };
+      }
+      return {
+        ...state,
+        boundaries: newBoundaries,
+      };
+
+    case 'CREATE_REGION':
+      return {
+        ...state,
+        regions: [...state.regions, action.value],
+      };
     default:
       return state;
   }

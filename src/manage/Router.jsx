@@ -10,7 +10,7 @@ import styled from 'styled-components';
 
 import rootReducer from './rootReducer';
 import {
-  LeafletMap, NavBar, ProjectList, ProjectDetail,
+  LeafletMap, NavBar, ProjectList, ProjectDetail, CreateRegion,
 } from './components';
 
 const store = createStore(
@@ -22,9 +22,7 @@ const store = createStore(
 const PageContainer = styled.div`
   position: relative;
   top: 4rem;
-  padding: 2rem;
   width: 100%;
-  max-width: 50rem;
   margin: 0 auto;
 `;
 
@@ -40,7 +38,7 @@ export default () => {
           <Route path={`${match.url}/projects/`} exact component={ProjectList} />
           <Route path={`${match.url}/new-project/`} exact />
           <Route path={`${match.url}/:project/`} exact component={ProjectDetail} />
-          <Route path={`${match.url}/:project/new-region/`} exact />
+          <Route path={`${match.url}/:project/new-region/`} exact component={CreateRegion} />
           <Route path={`${match.url}/:project/:region/`} exact component={LeafletMap} />
         </Switch>
       </PageContainer>
