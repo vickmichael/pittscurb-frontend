@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   background: #FFFFFF;
@@ -60,7 +60,6 @@ export const Wrapper = styled.div`
     padding-left: 2.5rem;
     
     color: #2B2B2B;
-    pointer-events: none;
   }
   
   @media (max-width: 800px) {

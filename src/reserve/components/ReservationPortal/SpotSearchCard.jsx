@@ -6,11 +6,12 @@ import {
   Wrapper,
 } from './SpotSearchCardStyles';
 
-import clockSvg from '../../../common/svgs/clock.svg';
+import Autocomplete from './Autocomplete';
+import TimeSelect from './TimeSelect';
 
 const testSubmit = () => {
   console.log('Spot search submit button clicked');
-}
+};
 
 const SpotSearchCard = () => {
   return (
@@ -26,20 +27,9 @@ const SpotSearchCard = () => {
         </h4>
 
         <form onSubmit={testSubmit}>
-          <input
-            type="text"
-            placeholder="Search a business, address, or intersection"
-          />
 
-          <div className="dropdown-wrapper">
-            <img src={clockSvg} alt="" />
-
-            <select name="" id="">
-              <option value="asap">
-                As soon as possible
-              </option>
-            </select>
-          </div>
+          <Autocomplete />
+          <TimeSelect />
 
           <SubmitButton type="submit">
             Find a spot
@@ -67,6 +57,6 @@ const SpotSearchCard = () => {
       </ExampleWrapper>
     </Wrapper>
   );
-}
+};
 
 export default SpotSearchCard;
