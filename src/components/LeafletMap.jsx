@@ -5,7 +5,6 @@ import { Map, TileLayer, GeoJSON } from 'react-leaflet';
 import styled from 'styled-components';
 
 const defaultLatLng = [40.4514974,-79.9902457]; // Pittsburgh strip
-
 const zoom = 18;
 const mapSources = {
   openStreetMap: {
