@@ -3,8 +3,8 @@ import { Polygon, Popup } from 'react-leaflet';
 import { useDispatch, useSelector } from 'react-redux';
 
 export default () => {
-  const areas = useSelector(state => state.areas);
-  const draftPolygon = useSelector(state => state.draftPolygon);
+  const areas = useSelector((state) => state.areas);
+  const draftPolygon = useSelector((state) => state.draftPolygon);
   const dispatch = useDispatch();
 
   const handleAreaClick = (evt) => {

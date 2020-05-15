@@ -33,6 +33,7 @@ module.exports = {
     'react/prop-types': 1,
     'react/no-array-index-key': 1,
     'import/prefer-default-export': 1,
-    'no-case-declarations': 0
+    'no-case-declarations': 0,
+    'no-multi-spaces': 0,
   },
 };
