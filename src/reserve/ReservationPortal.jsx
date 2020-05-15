@@ -1,11 +1,15 @@
 import React from 'react';
-import * as styles from './styles';
+import styled from 'styled-components';
 
 import heroImage from './Reservation-Portal_Hero-Image.png';
 
+const HeroImage = styled.img`
+  width: 100%;
+`;
+
 const ReservationPortal = () => (
   <div>
-    <styles.HeroImage
+    <HeroImage
       src={heroImage}
       alt="Map with highlighted parking area"
     />
