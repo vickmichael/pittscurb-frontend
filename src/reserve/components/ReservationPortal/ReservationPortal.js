@@ -30,7 +30,7 @@ const ReservationPortal = () => {
       <SearchSection>
         <SpotSearchCard />
 
-        <div>
+        <div className="icon-container">
           <img src={arrow} alt=""/>
 
           <div>
@@ -38,7 +38,7 @@ const ReservationPortal = () => {
           </div>
         </div>
 
-        <div>
+        <div className="icon-container">
           <img src={burgerAndSoda} alt=""/>
 
           <div>

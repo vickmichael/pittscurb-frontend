@@ -10,6 +10,28 @@ export const Wrapper = styled.div`
   flex-direction: column;
   max-width: 438px;
   
+  & > .top-section {
+    padding: 2.75rem 2rem 1.5rem 2rem;
+    width: 100%;
+    
+    > h2 {
+      font-size: 2rem;
+      
+      > span {
+        color: white;
+        text-shadow:
+          -1px -1px 0 #000,  
+          1px -1px 0 #000,
+          -1px 1px 0 #000,
+          1px 1px 0 #000;
+      }
+    }
+    
+    h4 {
+    color: black;
+    }
+  } 
+  
   & form .dropdown-wrapper {
     position: relative;
     
@@ -41,13 +63,14 @@ export const Wrapper = styled.div`
     pointer-events: none;
   }
   
-  & > .top-section {
-    padding: 1.5rem 2rem;
+  @media (max-width: 800px) {
+    border-top: none;
+    max-width: 100%;
     width: 100%;
   }
 `;
 
-export const SubmitButton = styled.div`
+export const SubmitButton = styled.button`
   height: 50px;
   width: 100%;
   

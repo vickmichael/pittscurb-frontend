@@ -16,8 +16,13 @@ const SpotSearchCard = () => {
   return (
     <Wrapper>
       <div className="top-section">
+        <h2>
+          Pitts
+          <span>Curb</span>
+        </h2>
+
         <h4>
-          Where do you need to pick something up?
+          What business are you picking up from?
         </h4>
 
         <form onSubmit={testSubmit}>

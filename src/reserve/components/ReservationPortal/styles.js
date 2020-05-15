@@ -5,11 +5,6 @@ export const Wrapper = styled.div`
   width: 100%;
 `
 
-export const HeroImage = styled.img`
-  position: absolute;
-  width: 100%;
-`
-
 export const Overlay = styled.div`
   background: url('Reservation-Portal_Hero-Image.png');
   height: 592px;
@@ -28,6 +23,10 @@ export const Overlay = styled.div`
     font-weight: normal;
     margin: 0;
     width: 400px;
+  }
+  
+  @media (max-width: 800px) {
+    display: none;
   }
 `
 
@@ -51,6 +50,16 @@ export const SearchSection = styled.div`
     > img {
       height: 3.375rem;
       margin-bottom: 1.5rem;
+    }
+  }
+  
+  @media (max-width: 800px) {
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    
+    & > .icon-container {
+      display: none;
     }
   }
 `
