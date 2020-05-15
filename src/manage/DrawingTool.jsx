@@ -1,9 +1,9 @@
 import React from 'react';
 import { CircleMarker, Polygon } from 'react-leaflet';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-export default ({ parkingAreas }) => {
-  const { draftPolygon, mousePosition } = parkingAreas;
+export default () => {
+  const { draftPolygon, mousePosition } = useSelector(state => state);
   const dispatch = useDispatch();
 
   const dynamicPositions = draftPolygon.length ? [...draftPolygon, mousePosition] : [draftPolygon];

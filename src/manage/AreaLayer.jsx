@@ -1,11 +1,10 @@
 import React from 'react';
 import { Polygon, Popup } from 'react-leaflet';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-export default ({ parkingAreas }) => {
-  const { areas, draftPolygon } = parkingAreas;
-  // const areas = useSelector(state => state.areas);
-  // const draftPolygon = useSelector(state => state.draftPolygon);
+export default () => {
+  const areas = useSelector(state => state.areas);
+  const draftPolygon = useSelector(state => state.draftPolygon);
   const dispatch = useDispatch();
 
   const handleAreaClick = (evt) => {

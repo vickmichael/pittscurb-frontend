@@ -9,7 +9,7 @@ import {
 import Management from './manage/Router';
 import NavBar from './common/NavBar/NavBar';
 
-import ReservationPortalContainer from './containers/ReservationPortalContainer';
+import ReservationPortal from './reserve/ReservationPortal';
 
 export default () => (
   <Router>
@@ -27,7 +27,7 @@ export default () => (
       </Route>
 
       <Route path="/reserve">
-        <ReservationPortalContainer />
+        <ReservationPortal />
       </Route>
     </Switch>
   </Router>
