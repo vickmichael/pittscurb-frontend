@@ -12,6 +12,7 @@ const initialState = {
   draftPolygon: [],
   mousePosition: {lat: 0, lng: 0},
   boundaries: [],
+  zones: [],
 };
 
 const rootReducer = ( state = initialState, action ) => {
@@ -34,6 +35,8 @@ const rootReducer = ( state = initialState, action ) => {
         return {...state, boundaries: [...state.boundaries, action.value]}
       } 
       return {...state, boundaries: newBoundaries}
+    case 'CREATE_ZONE':
+      return {...state, zones: [...state.zones, action.value]}
     default:
       return state
   }

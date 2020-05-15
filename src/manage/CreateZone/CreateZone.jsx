@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { mdiClose, mdiPlus } from '@mdi/js';
 import Icon from '@mdi/react';
 
-const StyledPanel = styled.div`
+const StyledPanel = styled.form`
   width: 33vw;
   display: flex;
   flex-flow: column;
@@ -77,6 +77,7 @@ const StyledBoundriesContainer = styled.div`
   padding: .5rem;
   width: 100%;
   min-height: 42px;
+  overflow: hidden;
 `;
 
 const StyledButton = styled(Button)`
@@ -91,15 +92,26 @@ export default () => {
       type: 'TOGGLE_BOUNDARIES', value: boundary
     })
   };
+  const handleCreateZone = () => {
+    const zoneName = document.getElementById('zoneName').value;
+    const editorEmail = document.getElementById('editorEmail').value;
+    const viewerEmail = document.getElementById('viewerEmail').value;
+
+    dispatch({type: 'CREATE_ZONE', value: {
+      zoneName,
+      boundaries,
+      editorEmail,
+      viewerEmail,
+    }})
+  }
   const boundaries = useSelector(state => state.boundaries)
 
   return (
     <StyledPanel>
       <h2>Create zone</h2>
-      <TextField size="small" variant="outlined" label="Zone Name"></TextField>
+      <TextField id="zoneName" equired size="small" variant="outlined" label="Zone Name"></TextField>
       <StyledLabel htmlFor="">Boundaries</StyledLabel>
       <StyledBoundriesContainer>
-      
         { boundaries.map(boundary => ( 
           <Chip
             size="small"
@@ -114,7 +126,7 @@ export default () => {
       <StyledCard>
         <h3>Editors</h3>
         <StyledLabel htmlFor="">Can do everything except edit zone boundaries.</StyledLabel>
-        <TextField size="small" variant="outlined" type="email"></TextField>
+        <TextField id="editorEmail" size="small" variant="outlined" type="email"/>
         <button>
           <Icon size="1rem" path={mdiPlus} />
           Add an Editor
@@ -123,7 +135,7 @@ export default () => {
       <StyledCard>
         <h3>Viewers</h3>
         <StyledLabel htmlFor="">Can do everything except edit zone boundaries.</StyledLabel>
-        <TextField size="small" variant="outlined" type="email"></TextField>
+        <TextField id="viewerEmail" size="small" variant="outlined" type="email"/>
         <button>
           <Icon size="1rem" path={mdiPlus} />
           Add a viewer
@@ -131,7 +143,7 @@ export default () => {
       </StyledCard>
       <div>
         <Button>Cancel</Button>
-        <StyledButton color="primary">Create Zone</StyledButton>
+        <StyledButton color="primary" onClick={handleCreateZone}>Create Zone</StyledButton>
       </div>
     </StyledPanel>
   )
