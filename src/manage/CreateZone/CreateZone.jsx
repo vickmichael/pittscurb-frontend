@@ -92,18 +92,26 @@ export default () => {
       type: 'TOGGLE_BOUNDARIES', value: boundary
     })
   };
+  let zoneName = document.getElementById('zoneName');
+  let editorEmail = document.getElementById('editorEmail');
+  let viewerEmail = document.getElementById('viewerEmail');
+  const cancel = () => {
+    zoneName.value = '';
+    editorEmail.value = '';
+    viewerEmail.value = '';
+  }
   const handleCreateZone = () => {
-    const zoneName = document.getElementById('zoneName').value;
-    const editorEmail = document.getElementById('editorEmail').value;
-    const viewerEmail = document.getElementById('viewerEmail').value;
-
     dispatch({type: 'CREATE_ZONE', value: {
       zoneName,
       boundaries,
       editorEmail,
       viewerEmail,
     }})
+
+    cancel();
   }
+
+  
   const boundaries = useSelector(state => state.boundaries)
 
   return (
@@ -142,7 +150,7 @@ export default () => {
         </button>
       </StyledCard>
       <div>
-        <Button>Cancel</Button>
+        <Button onClick={cancel}>Cancel</Button>
         <StyledButton color="primary" onClick={handleCreateZone}>Create Zone</StyledButton>
       </div>
     </StyledPanel>
