@@ -12,8 +12,9 @@ import styled from 'styled-components';
 import rawCoord from '../mockData/coord-data.json';
 import { lineStyles, mapSources, zoom } from '../constants/map';
 import { getParkingSpots } from '../utils/spaceGeneration'
-import DrawingTool from './DrawingTool';
-import AreaLayer from './AreaLayer';
+
+import DrawingToolContainer from "../containers/DrawingToolContainer";
+import AreaLayerContainer from "../containers/AreaLayerContainer";
 
 const defaultLatLng = [40.4514974,-79.9902457]; // Somewhere in Pittsburgh
 
@@ -115,8 +116,8 @@ export default () => {
         );
       })}
 
-      <DrawingTool />
-      <AreaLayer />
+      <DrawingToolContainer />
+      <AreaLayerContainer />
     </ StyledMap>
   );
 };
