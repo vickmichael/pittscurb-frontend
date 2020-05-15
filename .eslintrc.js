@@ -29,6 +29,10 @@ module.exports = {
     'comma-spacing': 1,
     'quotes': 1,
     'padded-blocks': 1,
-    'react/jsx-tag-spacing': 1
+    'react/jsx-tag-spacing': 1,
+    'react/prop-types': 1,
+    'react/no-array-index-key': 1,
+    'import/prefer-default-export': 1,
+    'no-case-declarations': 0
   },
 };

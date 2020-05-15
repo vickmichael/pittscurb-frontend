@@ -1,30 +1,28 @@
 const initialState = {
   areas: [],
   draftPolygon: [],
-  mousePosition: {lat: 0, lng: 0}
+  mousePosition: { lat: 0, lng: 0 },
 };
 
-export const parkingAreasReducer = ( state = initialState, action ) => {
-
+export default (state = initialState, action) => {
   switch (action.type) {
     case 'FINISH_AREA':
       return {
         ...state,
         areas: [
           ...state.areas,
-          state.draftPolygon
+          state.draftPolygon,
         ],
-        draftPolygon: []
+        draftPolygon: [],
       };
 
     case 'DELETE_AREA':
       const newAreas = state.areas;
       newAreas.splice(action.value, 1);
-      console.log(newAreas);
 
       return {
         ...state,
-        areas: newAreas
+        areas: newAreas,
       };
 
     case 'ADD_POLYGON_POINT':
@@ -32,14 +30,14 @@ export const parkingAreasReducer = ( state = initialState, action ) => {
         ...state,
         draftPolygon: [
           ...state.draftPolygon,
-          action.value
-        ]
+          action.value,
+        ],
       };
 
     case 'UPDATE_MOUSE_POSITION':
       return {
         ...state,
-        mousePosition: action.value
+        mousePosition: action.value,
       };
 
     default:

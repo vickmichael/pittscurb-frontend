@@ -1,11 +1,11 @@
 import React from 'react';
-import LeafletMap from './LeafletMap';
 import {
   Switch,
   Route,
   Link,
-  useRouteMatch
-} from "react-router-dom";
+  useRouteMatch,
+} from 'react-router-dom';
+import LeafletMap from './LeafletMap';
 
 export default () => {
   const match = useRouteMatch();

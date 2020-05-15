@@ -7,7 +7,7 @@ export default ({ parkingAreas }) => {
   const dispatch = useDispatch();
 
   const dynamicPositions = draftPolygon.length ? [...draftPolygon, mousePosition] : [draftPolygon];
-  const finishArea = evt => {
+  const finishArea = (evt) => {
     dispatch({ type: 'FINISH_AREA' });
     evt.originalEvent.view.L.DomEvent.stopPropagation(evt);
   };
@@ -18,4 +18,4 @@ export default ({ parkingAreas }) => {
       {draftPolygon.length > 2 && <CircleMarker color="lightblue" center={draftPolygon[0]} onClick={finishArea} />}
     </>
   );
-}
+};
