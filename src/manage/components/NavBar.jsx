@@ -50,10 +50,10 @@ export default ({ children }) => {
     ...(projectMatch    ? projectMatch.params    : {}),
     ...(newRegionMatch  ? newRegionMatch.params  : {}),
     ...(regionEditMatch ? regionEditMatch.params : {}),
-    ...(newProjectMatch ? {url: newProjectMatch.url} : {}),
-    ...(projectMatch    ? {url: projectMatch.url}    : {}),
-    ...(newRegionMatch  ? {url: newRegionMatch.url}  : {}),
-    ...(regionEditMatch ? {url: regionEditMatch.url} : {}),
+    ...(newProjectMatch ? { url: newProjectMatch.url } : {}),
+    ...(projectMatch    ? { url: projectMatch.url }    : {}),
+    ...(newRegionMatch  ? { url: newRegionMatch.url }  : {}),
+    ...(regionEditMatch ? { url: regionEditMatch.url } : {}),
   };
 
   // TODO: Pull project/region name from redux instead of using the raw url
