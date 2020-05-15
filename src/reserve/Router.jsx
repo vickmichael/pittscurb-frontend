@@ -7,8 +7,9 @@ import {
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
-import rootReducer from './rootReducer';
-import ReservationPortal from './components/ReservationPortal';
+import rootReducer from './reducers/rootReducer';
+
+import ReservationPortal from "./components/ReservationPortal/ReservationPortal";
 
 const store = createStore(
   rootReducer,
