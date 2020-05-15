@@ -9,8 +9,7 @@ import { createStore } from 'redux';
 
 import rootReducer from './reducers/rootReducer';
 
-import NavBar from '../common/NavBar/NavBar';
-import ReservationPortalContainer from './containers/ReservationPortalContainer';
+import ReservationPortal from "./components/ReservationPortal/ReservationPortal";
 
 const store = createStore(
   rootReducer,
@@ -23,11 +22,9 @@ export default () => {
 
   return (
     <Provider store={store}>
-      <NavBar />
-
       <Switch>
         <Route path={`${match.url}/`} exact>
-          <ReservationPortalContainer />
+          <ReservationPortal />
         </Route>
       </Switch>
     </Provider>
