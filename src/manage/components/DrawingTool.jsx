@@ -1,13 +1,13 @@
 import React from 'react';
 import { CircleMarker, Polygon } from 'react-leaflet';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-export default ({ parkingAreas }) => {
-  const { draftPolygon, mousePosition } = parkingAreas;
+export default () => {
+  const { draftPolygon, mousePosition } = useSelector((state) => state);
   const dispatch = useDispatch();
 
   const dynamicPositions = draftPolygon.length ? [...draftPolygon, mousePosition] : [draftPolygon];
-  const finishArea = evt => {
+  const finishArea = (evt) => {
     dispatch({ type: 'FINISH_AREA' });
     evt.originalEvent.view.L.DomEvent.stopPropagation(evt);
   };
@@ -18,4 +18,4 @@ export default ({ parkingAreas }) => {
       {draftPolygon.length > 2 && <CircleMarker color="lightblue" center={draftPolygon[0]} onClick={finishArea} />}
     </>
   );
-}
+};

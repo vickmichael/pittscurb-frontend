@@ -1,25 +1,25 @@
 import React from 'react';
 import LeafletMap from './LeafletMap';
-import CreateZone from './CreateZone';
+import CreateRegion from './CreateRegion';
 import styled from 'styled-components';
 
 // import pittsburghDistricts from '../../mockData/Pittsburgh_City_Council_Districts_2012.json';
-import pittsburghNeighborhoods from '../../mockData/Neighborhoods_with_SNAP_Data.json';
+import pittsburghNeighborhoods from '../../../mockData/Neighborhoods_with_SNAP_Data.json';
 
-const StyledCreateZoneContainer = styled.div`
+const StyledCreateRegionContainer = styled.div`
   position: relative;
   display: flex;  
   flex-flow: row wrap;
   width: 100vw;
-  height: calc(100vh - 5rem);
-  top: 5rem;
+  height: calc(100vh - 4rem);
+  margin: 0 auto;
 `;
 export default () => {
 
   return (
-    <StyledCreateZoneContainer>
-      <CreateZone />
+    <StyledCreateRegionContainer>
+      <CreateRegion />
       <LeafletMap geoJson={pittsburghNeighborhoods} />
-    </StyledCreateZoneContainer>
+    </StyledCreateRegionContainer>
   )
 }

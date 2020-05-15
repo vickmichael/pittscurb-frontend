@@ -92,17 +92,17 @@ export default () => {
       type: 'TOGGLE_BOUNDARIES', value: boundary
     })
   };
-  let zoneName = document.getElementById('zoneName');
+  let regionName = document.getElementById('regionName');
   let editorEmail = document.getElementById('editorEmail');
   let viewerEmail = document.getElementById('viewerEmail');
   const cancel = () => {
-    zoneName.value = '';
+    regionName.value = '';
     editorEmail.value = '';
     viewerEmail.value = '';
   }
-  const handleCreateZone = () => {
-    dispatch({type: 'CREATE_ZONE', value: {
-      zoneName,
+  const handleCreateRegion = () => {
+    dispatch({type: 'CREATE_REGION', value: {
+      regionName,
       boundaries,
       editorEmail,
       viewerEmail,
@@ -115,8 +115,8 @@ export default () => {
   
   return (
     <StyledPanel>
-      <h2>Create zone</h2>
-      <TextField id="zoneName" equired size="small" variant="outlined" label="Zone Name"></TextField>
+      <h2>Create region</h2>
+      <TextField id="regionName" equired size="small" variant="outlined" label="Region Name"></TextField>
       <StyledLabel>Boundaries</StyledLabel>
       <StyledBoundriesContainer>
         { boundaries.map(boundary => ( 
@@ -132,7 +132,7 @@ export default () => {
    
       <StyledCard>
         <h3>Editors</h3>
-        <StyledLabel>Can do everything except edit zone boundaries.</StyledLabel>
+        <StyledLabel>Can do everything except edit region boundaries.</StyledLabel>
         <TextField id="editorEmail" size="small" variant="outlined" type="email"/>
         <StyledTextButton>
           <Icon size="1rem" path={mdiPlus} />
@@ -141,7 +141,7 @@ export default () => {
       </StyledCard>
       <StyledCard>
         <h3>Viewers</h3>
-        <StyledLabel>Can do everything except edit zone boundaries.</StyledLabel>
+        <StyledLabel>Can do everything except edit region boundaries.</StyledLabel>
         <TextField id="viewerEmail" size="small" variant="outlined" type="email"/>
         <StyledTextButton>
           <Icon size="1rem" path={mdiPlus} />
@@ -150,7 +150,7 @@ export default () => {
       </StyledCard>
       <div>
         <Button onClick={cancel}>Cancel</Button>
-        <StyledButton color="primary" onClick={handleCreateZone}>Create Zone</StyledButton>
+        <StyledButton color="primary" onClick={handleCreateRegion}>Create region</StyledButton>
       </div>
     </StyledPanel>
   )
