@@ -9,10 +9,10 @@ import {
 
 import SpotSearchCard from './SpotSearchCard';
 
-import burgerAndSoda from '../../common/svgs/burger_and_soda.svg';
-import arrow from '../../common/svgs/arrow.svg';
-import hamburger from '../../common/svgs/hamburger.svg';
-import cellphoneOuter from '../../common/svgs/cellphone_outer.svg'
+import burgerAndSoda from '../../../common/svgs/burger_and_soda.svg';
+import arrow from '../../../common/svgs/arrow.svg';
+import hamburger from '../../../common/svgs/hamburger.svg';
+import cellphoneOuter from '../../../common/svgs/cellphone_outer.svg'
 
 const ReservationPortal = () => {
   return (

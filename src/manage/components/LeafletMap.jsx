@@ -4,32 +4,32 @@ import {
   Marker,
   TileLayer,
   Polyline,
-  Tooltip
+  Tooltip,
 } from 'react-leaflet';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
 import rawCoord from '../mockData/coord-data.json';
-import { lineStyles, mapSources, zoom } from '../constants/map';
-import { getParkingSpots } from '../utils/spaceGeneration'
+import { lineStyles, mapSources, zoom } from '../../common/constants/map';
+import { getParkingSpots } from '../utils/spaceGeneration';
 
-import DrawingToolContainer from "../containers/DrawingToolContainer";
-import AreaLayerContainer from "../containers/AreaLayerContainer";
+import DrawingTool from './DrawingTool';
+import AreaLayer from './AreaLayer';
 
-const defaultLatLng = [40.4514974,-79.9902457]; // Somewhere in Pittsburgh
+const defaultLatLng = [40.4514974, -79.9902457]; // Somewhere in Pittsburgh
 
-const processCoordData = rawCoord.features.map(feat => ({
+const processCoordData = rawCoord.features.map((feat) => ({
   ...feat,
   geometry: {
-    coordinates: feat.geometry.coordinates.map(longLat => [longLat[1], longLat[0]])
+    coordinates: feat.geometry.coordinates.map((longLat) => [longLat[1], longLat[0]]),
   },
 }));
 
 const StyledMap = styled(Map)`
   position: fixed;
-  top: 5rem;
+  top: 4rem;
   left: 0;
-  height: calc(100vh - 5rem);
+  height: calc(100vh - 4rem);
   width: 100vw;
   z-index: -1;
 
@@ -46,12 +46,11 @@ export default () => {
   const handleMouseMove = ({ latlng }) => {
     dispatch({ type: 'UPDATE_MOUSE_POSITION', value: latlng });
   };
-  const handleMapClick = ({ originalEvent, latlng }) => {
-    console.log(originalEvent);
+  const handleMapClick = ({ latlng }) => {
     dispatch({ type: 'ADD_POLYGON_POINT', value: latlng });
   };
   const handleKeyDown = ({ originalEvent }) => {
-    if(originalEvent.code === 'Enter') {
+    if (originalEvent.code === 'Enter') {
       dispatch({ type: 'FINISH_AREA' });
     }
   };
@@ -67,7 +66,7 @@ export default () => {
       onKeyDown={handleKeyDown}
     >
 
-      {mapLayerKeys.map(key => (
+      {mapLayerKeys.map((key) => (
         <TileLayer
           maxNativeZoom={mapSources[key].maxNativeZoom}
           maxZoom={21}
@@ -75,7 +74,7 @@ export default () => {
           key={key}
           url={mapSources[key].url}
           attribution={false ? mapSources[key].attribution : ''}
-          style={{opacity: 0.1}}
+          style={{ opacity: 0.1 }}
         />
       ))}
 
@@ -93,31 +92,31 @@ export default () => {
               positions={[line.geometry.coordinates]}
             >
               <Tooltip>
-                {Object.keys(line.properties).map(property => (
-                  <div key={property}><span>{property}: </span><span>{line.properties[property]}</span></div>
+                {Object.keys(line.properties).map((property) => (
+                  <div key={property}>
+                    <span>
+                      {property}
+                      :
+                      {' '}
+                    </span>
+                    <span>{line.properties[property]}</span>
+                  </div>
                 ))}
               </Tooltip>
             </Polyline>
-            {spots.length ?
-              /*
-                This mapping is VERY slow to re-render at the moment
-                DO NOT add local state or consume redux to the leaflet map at the moment
-                DO NOT do anything that causes a re-render of the leaflet map (until this spot generation is pulled out)
-
-                if you need a child to get state, store it in redux
-                - dispatch from this file if need-be and consume it in the child component directly
-              */
-              (lineStyles[line.properties.category].color==='green' || lineStyles[line.properties.category].color==='yellow') &&
-              spots.map((spot, i) => (
-                <Marker key={`spot${i}`} position={spot} />
-              )) : null
-            }
+            {spots.length
+              ? (
+                lineStyles[line.properties.category].color === 'green'
+                || lineStyles[line.properties.category].color === 'yellow'
+              ) && spots.map((spot, ind) => (
+                <Marker key={`spot${ind}`} position={spot} />
+              )) : null}
           </>
         );
       })}
 
-      <DrawingToolContainer />
-      <AreaLayerContainer />
-    </ StyledMap>
+      <DrawingTool />
+      <AreaLayer />
+    </StyledMap>
   );
 };

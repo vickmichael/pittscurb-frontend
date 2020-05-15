@@ -6,11 +6,8 @@ body {
   position: relative;
   height: 100%;
   width: 100%;
-  /*top: 5rem;*/
 }
 
-#root {
-  width: 100%;
-}
+#root { width: 100%; width: 100vw; }
 
 *, * *, * > * { box-sizing: border-box; }

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import ReservationPortal from "../components/ReservationPortal/ReservationPortal";
 
+// eslint-disable-next-line react/prefer-stateless-function
 class ReservationPortalContainer extends React.Component {
 
   render() {

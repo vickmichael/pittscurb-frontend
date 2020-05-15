@@ -6,7 +6,7 @@ import {
   Wrapper,
 } from './SpotSearchCardStyles';
 
-import clockSvg from '../../common/svgs/clock.svg';
+import clockSvg from '../../../common/svgs/clock.svg';
 
 const testSubmit = () => {
   console.log('Spot search submit button clicked');
