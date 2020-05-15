@@ -8,11 +8,12 @@ const pittsburghDistricts = require('../../mockData/Pittsburgh_City_Council_Dist
 const pittsburghNeighborhoods= require('../../mockData/Neighborhoods_with_SNAP_Data.json')
 
 const StyledCreateZoneContainer = styled.div`
+  position: relative;
   display: flex;  
-  flexflow: row wrap;
+  flex-flow: row wrap;
   width: 100vw;
   height: calc(100vh - 5rem);
-  
+  top: 5rem;
 `;
 export default ({createZone}) => {
 

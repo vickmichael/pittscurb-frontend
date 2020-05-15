@@ -32,12 +32,8 @@ const mapSources = {
 };
 
 const StyledMap = styled(Map)`
-  // position: fixed;
-  // top: 0;
-  // left: 0;
   height: 100%;
   width: 67vw;
-  // z-index: -1; 
 `;
 
 const sources = ["esriWorldImagery"];
