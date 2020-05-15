@@ -117,7 +117,7 @@ export default ({createZone}) => {
     <StyledPanel>
       <h2>Create zone</h2>
       <TextField id="zoneName" equired size="small" variant="outlined" label="Zone Name"></TextField>
-      <StyledLabel htmlFor="">Boundaries</StyledLabel>
+      <StyledLabel>Boundaries</StyledLabel>
       <StyledBoundriesContainer>
         { boundaries.map(boundary => ( 
           <Chip
@@ -132,7 +132,7 @@ export default ({createZone}) => {
    
       <StyledCard>
         <h3>Editors</h3>
-        <StyledLabel htmlFor="">Can do everything except edit zone boundaries.</StyledLabel>
+        <StyledLabel>Can do everything except edit zone boundaries.</StyledLabel>
         <TextField id="editorEmail" size="small" variant="outlined" type="email"/>
         <StyledTextButton>
           <Icon size="1rem" path={mdiPlus} />
@@ -141,7 +141,7 @@ export default ({createZone}) => {
       </StyledCard>
       <StyledCard>
         <h3>Viewers</h3>
-        <StyledLabel htmlFor="">Can do everything except edit zone boundaries.</StyledLabel>
+        <StyledLabel>Can do everything except edit zone boundaries.</StyledLabel>
         <TextField id="viewerEmail" size="small" variant="outlined" type="email"/>
         <StyledTextButton>
           <Icon size="1rem" path={mdiPlus} />
