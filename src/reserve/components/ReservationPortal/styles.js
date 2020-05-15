@@ -1,9 +1,9 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   position: relative;
   width: 100%;
-`
+`;
 
 export const Overlay = styled.div`
   background: url('Reservation-Portal_Hero-Image.png');
@@ -28,7 +28,7 @@ export const Overlay = styled.div`
   @media (max-width: 800px) {
     display: none;
   }
-`
+`;
 
 export const SearchSection = styled.div`
   align-items: center;
@@ -62,7 +62,7 @@ export const SearchSection = styled.div`
       display: none;
     }
   }
-`
+`;
 
 export const SalesPoints = styled.div`
   align-items: center;
