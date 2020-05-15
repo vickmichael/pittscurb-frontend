@@ -40,26 +40,26 @@ const StyledCard = styled.div`
     width: 100%;
     margin: 0 0 .5rem 0;
   }
- 
-  button {
-    font-family: Muli;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 10px;
-    border: none;
-    background: transparent;
-    color: #8D1EF8;
-    display: flex;
-    flex-flow: row;
-    height: 30px;
-    align-items: center;
-    cursor: pointer;
-    outline: none;
-    &:hover{
-      color: #4D4D4D;
-    }
+`;
+const StyledTextButton = styled.button`
+  font-family: Muli;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 10px;
+  border: none;
+  background: transparent;
+  color: #8D1EF8;
+  display: flex;
+  flex-flow: row;
+  height: 30px;
+  align-items: center;
+  cursor: pointer;
+  outline: none;
+  &:hover{
+    color: #4D4D4D;
   }
 `;
+
 const StyledLabel = styled.label`
   margin: .5rem 0;
   line-height: 10px;
@@ -134,19 +134,19 @@ export default ({createZone}) => {
         <h3>Editors</h3>
         <StyledLabel htmlFor="">Can do everything except edit zone boundaries.</StyledLabel>
         <TextField id="editorEmail" size="small" variant="outlined" type="email"/>
-        <button>
+        <StyledTextButton>
           <Icon size="1rem" path={mdiPlus} />
           Add an Editor
-        </button>
+        </StyledTextButton>
       </StyledCard>
       <StyledCard>
         <h3>Viewers</h3>
         <StyledLabel htmlFor="">Can do everything except edit zone boundaries.</StyledLabel>
         <TextField id="viewerEmail" size="small" variant="outlined" type="email"/>
-        <button>
+        <StyledTextButton>
           <Icon size="1rem" path={mdiPlus} />
           Add a viewer
-        </button>
+        </StyledTextButton>
       </StyledCard>
       <div>
         <Button onClick={cancel}>Cancel</Button>
