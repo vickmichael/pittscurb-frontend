@@ -3,7 +3,7 @@ import LeafletMap from './LeafletMap';
 import CreateZone from './CreateZone';
 import styled from 'styled-components';
 
-import pittsburghDistricts from '../../mockData/Pittsburgh_City_Council_Districts_2012.json';
+// import pittsburghDistricts from '../../mockData/Pittsburgh_City_Council_Districts_2012.json';
 import pittsburghNeighborhoods from '../../mockData/Neighborhoods_with_SNAP_Data.json';
 
 const StyledCreateZoneContainer = styled.div`
