@@ -45,17 +45,17 @@ export const Wrapper = styled.div`
     padding: 1.5rem 2rem;
     width: 100%;
   }
+`;
+
+export const SubmitButton = styled.div`
+  height: 50px;
+  width: 100%;
   
-  & > .top-section > form > button {
-    height: 50px;
-    width: 100%;
-    
-    background: #8D1EF8;
-    border-radius: 4px;
-    color: #fff;
-    cursor: pointer;
-    font-size: 1rem;
-  }
+  background: #8D1EF8;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1rem;
 `;
 
 export const ExampleWrapper = styled.div`
@@ -69,11 +69,11 @@ export const ExampleWrapper = styled.div`
   padding: 2rem;
   width: 100%;
   
-  & .example-header {
-    font-weight: bold;
-  }
-  
   & .example-item > span {
     font-weight: 600;
   }
+`;
+
+export const ExampleHeader = styled.div`
+  font-weight: bold;
 `;

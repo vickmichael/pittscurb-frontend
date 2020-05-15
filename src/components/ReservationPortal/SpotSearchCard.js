@@ -1,5 +1,10 @@
 import React from 'react';
-import * as styles from './SpotSearchCardStyles';
+import {
+  ExampleHeader,
+  ExampleWrapper,
+  SubmitButton,
+  Wrapper,
+} from './SpotSearchCardStyles';
 
 import clockSvg from '../../common/svgs/clock.svg';
 
@@ -9,7 +14,7 @@ const testSubmit = () => {
 
 const SpotSearchCard = () => {
   return (
-    <styles.Wrapper>
+    <Wrapper>
       <div className="top-section">
         <h4>
           Where do you need to pick something up?
@@ -31,17 +36,17 @@ const SpotSearchCard = () => {
             </select>
           </div>
 
-          <button type="submit">
+          <SubmitButton type="submit">
             Find a spot
-          </button>
+          </SubmitButton>
         </form>
       </div>
 
 
-      <styles.ExampleWrapper>
-        <div className="example-header">
+      <ExampleWrapper>
+        <ExampleHeader className="example-header">
           Examples
-        </div>
+        </ExampleHeader>
 
         <div className="example-item">
           <span>Restaurant</span> - "Mad Mex, Round Corner"
@@ -54,8 +59,8 @@ const SpotSearchCard = () => {
         <div className="example-item">
           <span>Address</span> - "502 E. Ohio St., Pittsburgh"
         </div>
-      </styles.ExampleWrapper>
-    </styles.Wrapper>
+      </ExampleWrapper>
+    </Wrapper>
   );
 }
 

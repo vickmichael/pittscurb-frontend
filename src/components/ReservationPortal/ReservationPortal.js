@@ -1,5 +1,11 @@
 import React from 'react';
-import * as styles from './styles';
+import {
+  Feedback,
+  Overlay,
+  SalesPoints,
+  SearchSection,
+  Wrapper,
+} from './styles';
 
 import SpotSearchCard from './SpotSearchCard';
 
@@ -10,8 +16,8 @@ import cellphoneOuter from '../../common/svgs/cellphone_outer.svg'
 
 const ReservationPortal = () => {
   return (
-    <styles.Wrapper>
-      <styles.Overlay>
+    <Wrapper>
+      <Overlay>
         <h2>
           Find & reserve open parking spots
         </h2>
@@ -19,9 +25,9 @@ const ReservationPortal = () => {
         <h4>
           The up-to-date parking map for picking up anything from food to dry cleaning.
         </h4>
-      </styles.Overlay>
+      </Overlay>
 
-      <styles.SearchSection>
+      <SearchSection>
         <SpotSearchCard />
 
         <div>
@@ -39,9 +45,9 @@ const ReservationPortal = () => {
             Local specials
           </div>
         </div>
-      </styles.SearchSection>
+      </SearchSection>
 
-      <styles.SalesPoints>
+      <SalesPoints>
         <h2>
           The easiest way to search and save parking spaces, updated in real time.
         </h2>
@@ -71,9 +77,9 @@ const ReservationPortal = () => {
             </div>
           </div>
         </div>
-      </styles.SalesPoints>
+      </SalesPoints>
 
-      <styles.Feedback>
+      <Feedback>
         <div className="feedback-content">
           <div>
             Questions? Feedback?
@@ -85,8 +91,8 @@ const ReservationPortal = () => {
             </a>
           </div>
         </div>
-      </styles.Feedback>
-    </styles.Wrapper>
+      </Feedback>
+    </Wrapper>
   );
 }
 
