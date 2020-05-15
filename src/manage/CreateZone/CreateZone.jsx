@@ -84,8 +84,8 @@ const StyledButton = styled(Button)`
   background-color: #8D1EF8;
 `;
 
-// purple: #8D1EF8;
-export default ({createZone}) => {
+
+export default () => {
   const dispatch = useDispatch();
   const handleDelete = (boundary) => {
     dispatch({
@@ -111,8 +111,8 @@ export default ({createZone}) => {
     cancel();
   }
   
-  // const boundaries = useSelector(state => state.boundaries)
-  const { boundaries } = createZone;
+  const boundaries = useSelector(state => state.boundaries)
+  
   return (
     <StyledPanel>
       <h2>Create zone</h2>
