@@ -13,8 +13,8 @@ import rawCoord from '../mockData/coord-data.json';
 import { lineStyles, mapSources, zoom } from '../constants/map';
 import { getParkingSpots } from '../utils/spaceGeneration';
 
-import DrawingToolContainer from '../containers/DrawingToolContainer';
-import AreaLayerContainer from '../containers/AreaLayerContainer';
+import DrawingTool from './DrawingTool';
+import AreaLayer from './AreaLayer';
 
 const defaultLatLng = [40.4514974, -79.9902457]; // Somewhere in Pittsburgh
 
@@ -46,8 +46,7 @@ export default () => {
   const handleMouseMove = ({ latlng }) => {
     dispatch({ type: 'UPDATE_MOUSE_POSITION', value: latlng });
   };
-  const handleMapClick = ({ originalEvent, latlng }) => {
-    console.log(originalEvent);
+  const handleMapClick = ({ latlng }) => {
     dispatch({ type: 'ADD_POLYGON_POINT', value: latlng });
   };
   const handleKeyDown = ({ originalEvent }) => {
@@ -116,8 +115,8 @@ export default () => {
         );
       })}
 
-      <DrawingToolContainer />
-      <AreaLayerContainer />
+      <DrawingTool />
+      <AreaLayer />
     </StyledMap>
   );
 };
