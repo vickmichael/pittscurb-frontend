@@ -49,9 +49,9 @@ const style = (feature) => {
   };
 }
 export default ({ sourceKeys = sources, geoJson }) => {
-  // const boundaries = useSelector(state => state.boundaries);
+  
   const dispatch = useDispatch();
-  // const [selected, setSelected] = useState(['test']); 
+  
   const geoJsonRef = useRef(null)
   
   // highlight on mouseOver

@@ -14,11 +14,11 @@ const StyledCreateZoneContainer = styled.div`
   height: calc(100vh - 5rem);
   top: 5rem;
 `;
-export default ({createZone}) => {
+export default () => {
 
   return (
     <StyledCreateZoneContainer>
-      <CreateZone createZone={createZone}/>
+      <CreateZone />
       <LeafletMap geoJson={pittsburghNeighborhoods} />
     </StyledCreateZoneContainer>
   )
