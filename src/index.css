@@ -4,9 +4,8 @@ body {
   display: flex;
   font-family: Muli, Roboto, sans-serif;
   position: relative;
-  height: calc(100% - 5rem);
+  height: 100%;
   width: 100%;
-  top: 5rem;
 }
 
 #root { width: 100%; width: 100vw; }

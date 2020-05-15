@@ -7,14 +7,10 @@ import {
 } from 'react-router-dom';
 
 import Management from './manage/Router';
-import NavBar from './common/components/NavBar';
-
-import ReservationPortal from './reserve/ReservationPortal';
+import Reservation from './reserve/Router';
 
 export default () => (
   <Router>
-    <NavBar />
-
     <Route path="/" exact>
       <Link to="/manage">Admin App</Link>
       <br />
@@ -25,9 +21,8 @@ export default () => (
       <Route path="/manage">
         <Management />
       </Route>
-
       <Route path="/reserve">
-        <ReservationPortal />
+        <Reservation />
       </Route>
     </Switch>
   </Router>

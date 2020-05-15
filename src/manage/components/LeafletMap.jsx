@@ -9,9 +9,9 @@ import {
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
-import rawCoord from './mockData/coord-data.json';
-import { lineStyles, mapSources, zoom } from '../common/constants/map';
-import { getParkingSpots } from './utils/spaceGeneration';
+import rawCoord from '../mockData/coord-data.json';
+import { lineStyles, mapSources, zoom } from '../../common/constants/map';
+import { getParkingSpots } from '../utils/spaceGeneration';
 
 import DrawingTool from './DrawingTool';
 import AreaLayer from './AreaLayer';
@@ -27,9 +27,9 @@ const processCoordData = rawCoord.features.map((feat) => ({
 
 const StyledMap = styled(Map)`
   position: fixed;
-  top: 5rem;
+  top: 4rem;
   left: 0;
-  height: calc(100vh - 5rem);
+  height: calc(100vh - 4rem);
   width: 100vw;
   z-index: -1;
 

@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@mdi/js": "^5.2.45",
+    "@mdi/react": "^1.4.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
@@ -30,7 +32,9 @@
     "lint": "eslint src/**/*.jsx src/**/*.js --ignore-pattern *.css --fix",
     "lint-ci": "eslint src/**/*.jsx src/**/*.js --ignore-pattern *.css --quiet"
   },
-  "pre-commit": ["lint-ci"],
+  "pre-commit": [
+    "lint-ci"
+  ],
   "eslintConfig": {
     "extends": "react-app"
   },

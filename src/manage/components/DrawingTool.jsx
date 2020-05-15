@@ -3,7 +3,7 @@ import { CircleMarker, Polygon } from 'react-leaflet';
 import { useDispatch, useSelector } from 'react-redux';
 
 export default () => {
-  const { draftPolygon, mousePosition } = useSelector(state => state);
+  const { draftPolygon, mousePosition } = useSelector((state) => state);
   const dispatch = useDispatch();
 
   const dynamicPositions = draftPolygon.length ? [...draftPolygon, mousePosition] : [draftPolygon];
