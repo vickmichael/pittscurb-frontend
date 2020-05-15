@@ -9,4 +9,6 @@ body {
   top: 5rem;
 }
 
+#root { width: 100%; width: 100vw; }
+
 *, * *, * > * { box-sizing: border-box; }

@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom';
 
 import Management from './manage/Router';
-import NavBar from './common/NavBar/NavBar';
+import NavBar from './common/components/NavBar';
 
 import ReservationPortal from './reserve/ReservationPortal';
 

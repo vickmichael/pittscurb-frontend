@@ -9,9 +9,9 @@ import {
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
-import rawCoord from '../mockData/coord-data.json';
-import { lineStyles, mapSources, zoom } from '../constants/map';
-import { getParkingSpots } from '../utils/spaceGeneration';
+import rawCoord from './mockData/coord-data.json';
+import { lineStyles, mapSources, zoom } from '../common/constants/map';
+import { getParkingSpots } from './utils/spaceGeneration';
 
 import DrawingTool from './DrawingTool';
 import AreaLayer from './AreaLayer';
