@@ -86,7 +86,6 @@ export default () => {
     setZoom(zoom)
   }
 
-  console.log(zoom)
   return (
     <StyledMap
       id="mapId"
