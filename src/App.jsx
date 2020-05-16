@@ -12,9 +12,9 @@ import Reservation from './reserve/Router';
 export default () => (
   <Router>
     <Route path="/" exact>
-      <Link to="/manage">Admin App</Link>
+      <Link to="/manage/">Admin App</Link>
       <br />
-      <Link to="/reserve">Consumer App</Link>
+      <Link to="/reserve/">Consumer App</Link>
     </Route>
 
     <Switch>

@@ -1,5 +1,5 @@
 import React from 'react';
-import {useSelector, useDispatch} from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import {  Button, Chip, TextField }  from '@material-ui/core';
 import styled from 'styled-components';
 import { mdiClose, mdiPlus } from '@mdi/js';
@@ -89,51 +89,54 @@ export default () => {
   const dispatch = useDispatch();
   const handleDelete = (boundary) => {
     dispatch({
-      type: 'TOGGLE_BOUNDARIES', value: boundary
-    })
+      type: 'TOGGLE_BOUNDARIES', value: boundary,
+    });
   };
-  let regionName = document.getElementById('regionName');
-  let editorEmail = document.getElementById('editorEmail');
-  let viewerEmail = document.getElementById('viewerEmail');
+  const boundaries = useSelector((state) => state.boundaries);
+
+  const regionName = document.getElementById('regionName');
+  const editorEmail = document.getElementById('editorEmail');
+  const viewerEmail = document.getElementById('viewerEmail');
   const cancel = () => {
     regionName.value = '';
     editorEmail.value = '';
     viewerEmail.value = '';
-  }
+  };
   const handleCreateRegion = () => {
-    dispatch({type: 'CREATE_REGION', value: {
-      regionName,
-      boundaries,
-      editorEmail,
-      viewerEmail,
-    }})
+    dispatch({
+      type: 'CREATE_REGION',
+      value: {
+        regionName,
+        boundaries,
+        editorEmail,
+        viewerEmail,
+      },
+    });
 
     cancel();
-  }
-  
-  const boundaries = useSelector(state => state.boundaries)
-  
+  };
+
   return (
     <StyledPanel>
       <h2>Create region</h2>
-      <TextField id="regionName" equired size="small" variant="outlined" label="Region Name"></TextField>
+      <TextField id="regionName" equired size="small" variant="outlined" label="Region Name" />
       <StyledLabel>Boundaries</StyledLabel>
       <StyledBoundriesContainer>
-        { boundaries.map(boundary => ( 
+        { boundaries.map((boundary) => (
           <Chip
             size="small"
             key={boundary}
             label={boundary}
             onDelete={() => handleDelete(boundary)}
-            deleteIcon={<Icon size="1rem" path={mdiClose} />}>
-          </Chip> 
+            deleteIcon={<Icon size="1rem" path={mdiClose} />}
+          />
         ))}
       </StyledBoundriesContainer>
-   
+
       <StyledCard>
         <h3>Editors</h3>
         <StyledLabel>Can do everything except edit region boundaries.</StyledLabel>
-        <TextField id="editorEmail" size="small" variant="outlined" type="email"/>
+        <TextField id="editorEmail" size="small" variant="outlined" type="email" />
         <StyledTextButton>
           <Icon size="1rem" path={mdiPlus} />
           Add an Editor
@@ -142,7 +145,7 @@ export default () => {
       <StyledCard>
         <h3>Viewers</h3>
         <StyledLabel>Can do everything except edit region boundaries.</StyledLabel>
-        <TextField id="viewerEmail" size="small" variant="outlined" type="email"/>
+        <TextField id="viewerEmail" size="small" variant="outlined" type="email" />
         <StyledTextButton>
           <Icon size="1rem" path={mdiPlus} />
           Add a viewer
@@ -153,5 +156,5 @@ export default () => {
         <StyledButton color="primary" onClick={handleCreateRegion}>Create region</StyledButton>
       </div>
     </StyledPanel>
-  )
-}
+  );
+};

@@ -14,7 +14,7 @@ export default () => {
       <Link to={`${url}south-oakland-to-glen-hazel/`}>South Oakland to Glen Hazel</Link>
       <br />
       <Link to={`${url}the-polish-strip-hill/`}>The Polish Strip Hill</Link>
-      <br/>
+      <br />
       <Link to={`${url}new-region/`}>Create Region</Link>
     </>
   );

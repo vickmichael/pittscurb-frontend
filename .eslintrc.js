@@ -35,5 +35,6 @@ module.exports = {
     'import/prefer-default-export': 1,
     'no-case-declarations': 0,
     'no-multi-spaces': 0,
+    'react/jsx-no-bind': 0
   },
 };

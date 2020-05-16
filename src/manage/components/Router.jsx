@@ -2,13 +2,14 @@ import React from 'react';
 import {
   Switch,
   Route,
+  Link,
   useRouteMatch,
 } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
-import rootReducer from './reducers/rootReducer';
-import ReservationPortal from './components/ReservationPortal/ReservationPortal';
+import rootReducer from '../rootReducer';
+import LeafletMap from './LeafletMap';
 
 const store = createStore(
   rootReducer,
@@ -23,7 +24,10 @@ export default () => {
     <Provider store={store}>
       <Switch>
         <Route path={`${match.url}/`} exact>
-          <ReservationPortal />
+          <Link to={`${match.url}/areas`}>Manage Areas</Link>
+        </Route>
+        <Route path={`${match.url}/areas`}>
+          <LeafletMap />
         </Route>
       </Switch>
     </Provider>
