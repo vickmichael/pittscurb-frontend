@@ -12,6 +12,7 @@ const spotSearchReducer = ( state = initialState, action ) => {
       };
         
       case 'UPDATE_TIME':
+        console.log('Time updated: ' + action.value);
         return {
         ...state,
           time : action.value
