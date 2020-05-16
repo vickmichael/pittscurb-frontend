@@ -23,6 +23,7 @@ const PageContainer = styled.div`
   position: relative;
   top: 4rem;
   width: 100%;
+  min-height: calc(100% - 4rem);
   margin: 0 auto;
 `;
 
