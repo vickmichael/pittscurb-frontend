@@ -6,6 +6,8 @@ import {
   Wrapper,
 } from './SpotSearchCardStyles';
 
+import { Link, useRouteMatch } from 'react-router-dom';
+
 import Autocomplete from './Autocomplete';
 import TimeSelect from './TimeSelect';
 
@@ -14,6 +16,8 @@ const testSubmit = () => {
 };
 
 const SpotSearchCard = () => {
+  const match = useRouteMatch();
+
   return (
     <Wrapper>
       <div className="top-section">
@@ -31,9 +35,11 @@ const SpotSearchCard = () => {
           <Autocomplete />
           <TimeSelect />
 
-          <SubmitButton type="submit">
-            Find a spot
-          </SubmitButton>
+          <Link to={`${match.url}search`}>
+            <SubmitButton type="submit">
+              Find a spot
+            </SubmitButton>
+          </Link>
         </form>
       </div>
 

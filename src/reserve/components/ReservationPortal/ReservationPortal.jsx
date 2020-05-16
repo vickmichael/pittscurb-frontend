@@ -14,7 +14,7 @@ import arrow from '../../../common/svgs/arrow.svg';
 import hamburger from '../../../common/svgs/hamburger.svg';
 import cellphoneOuter from '../../../common/svgs/cellphone_outer.svg';
 
-const ReservationPortal = () => (
+export default () => (
   <Wrapper>
     <Overlay>
       <h2>
@@ -94,4 +94,3 @@ const ReservationPortal = () => (
   </Wrapper>
 );
 
-export default ReservationPortal;

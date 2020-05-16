@@ -2,12 +2,12 @@ import React, { useEffect } from 'react';
 
 import { useDispatch } from 'react-redux';
 
-const Autocomplete = () => {
+export default () => {
     const dispatch = useDispatch();
 
     // 4800m = 3 miles
     const searchRadius = 4800;
-    const defaultCenter = { lat: 40.44, long: -79.99};
+    const defaultCenter = { lat: 40.44, lng: -79.99};
 
     const handlePlaceChange = (place) => {
         dispatch({ type: 'UPDATE_PLACE', value: place });
@@ -23,7 +23,7 @@ const Autocomplete = () => {
             navigator.geolocation.getCurrentPosition((position) => {
                 const center = {
                     lat: position.coords.latitude,
-                    long: position.coords.longitude
+                    lng: position.coords.longitude
                 };
                 return new google.maps.Circle( // eslint-disable-line no-undef
                     {center: center, radius: searchRadius}
@@ -75,4 +75,3 @@ const Autocomplete = () => {
   }
 };
 
-export default Autocomplete;
