@@ -3,7 +3,7 @@ const initialState = {
   time: [],
 };
   
-export const spotSearchReducer = ( state = initialState, action ) => {  
+const spotSearchReducer = ( state = initialState, action ) => {  
   switch (action.type) {
     case 'UPDATE_PLACE':
       return {
@@ -20,3 +20,5 @@ export const spotSearchReducer = ( state = initialState, action ) => {
         return state;
   }
 };
+export default spotSearchReducer;
+
