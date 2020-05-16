@@ -11,7 +11,7 @@ import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
 import rawCoord from '../mockData/coord-data.json';
-import { lineStyles, mapSources, zoom } from '../../common/constants/map';
+import { lineStyles, mapSources, zoom as initialZoom } from '../../common/constants/map';
 import { getParkingSpots } from '../utils/spaceGeneration';
 
 import DrawingTool from './DrawingTool';
@@ -44,27 +44,29 @@ const mapLayerKeys = ['esriWorldImagery', 'Stamen_TonerLabels'];
 export default () => {
   const dispatch = useDispatch();
   const [places, setPlaces] = useState([]);
+  const [zoom, setZoom] = useState(initialZoom)
   const [center, setCenter] = useState([defaultLatLng[0], defaultLatLng[1]]);
 
   useEffect(() => {
-    const location = new google.maps.LatLng(center[0], center[1]) // eslint-disable-line no-undef
-    const service = new google.maps.places.PlacesService(document.createElement('div'));  // eslint-disable-line no-undef
+    if (zoom < 20 ) {
+      const location = new google.maps.LatLng(center[0], center[1]) // eslint-disable-line no-undef
+      const service = new google.maps.places.PlacesService(document.createElement('div'));  // eslint-disable-line no-undef
 
-    const request = {
-      location,
-      radius: '500',
-      type: ['establishment']
-    }
-
-    service.nearbySearch(request, (results, status) => {
-      if (status === "OK") {
-        setPlaces(results)
-        return
+      const request = {
+        location,
+        radius: getRadius(zoom),
+        type: ['establishment']
       }
-      console.log("Error Searching For Nearby Places")
-    });
 
-  }, [center]);
+      service.nearbySearch(request, (results, status) => {
+        if (status === "OK") {
+          setPlaces(results)
+          return
+        }
+        console.log("Error Searching For Nearby Places")
+      });
+    }
+  }, [center, zoom]);
 
 
   const handleMouseMove = ({ latlng }) => {
@@ -78,10 +80,12 @@ export default () => {
       dispatch({ type: 'FINISH_AREA' });
     }
   };
-  const handleViewportChanged = ({ center }) => {
+  const handleViewportChanged = ({ center, zoom }) => {
     setCenter(center)
+    setZoom(zoom)
   }
 
+  console.log(zoom)
   return (
     <StyledMap
       id="mapId"
@@ -166,3 +170,26 @@ export default () => {
     </StyledMap>
   );
 };
+
+function getRadius(zoomLevel) {
+
+  if (zoomLevel >= 19) {
+    return 100
+  }
+
+  if (zoomLevel === 18) {
+    return 230
+  }
+
+  if (zoomLevel === 17) {
+    return 300
+  }
+
+  if (zoomLevel === 16) {
+    return 800
+  }
+
+  if (zoomLevel <= 15) {
+    return 1800
+  }
+}
