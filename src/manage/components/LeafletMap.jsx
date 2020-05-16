@@ -13,6 +13,7 @@ import styled from 'styled-components';
 import rawCoord from '../mockData/coord-data.json';
 import { lineStyles, mapSources, zoom as initialZoom } from '../../common/constants/map';
 import { getParkingSpots } from '../utils/spaceGeneration';
+import {getZoomRadii} from '../utils/zoomRadii'
 
 import DrawingTool from './DrawingTool';
 import AreaLayer from './AreaLayer';
@@ -54,7 +55,7 @@ export default () => {
 
       const request = {
         location,
-        radius: getRadius(zoom),
+        radius: getZoomRadii(zoom),
         type: ['establishment']
       }
 
@@ -170,26 +171,3 @@ export default () => {
     </StyledMap>
   );
 };
-
-function getRadius(zoomLevel) {
-
-  if (zoomLevel >= 19) {
-    return 100
-  }
-
-  if (zoomLevel === 18) {
-    return 230
-  }
-
-  if (zoomLevel === 17) {
-    return 300
-  }
-
-  if (zoomLevel === 16) {
-    return 800
-  }
-
-  if (zoomLevel <= 15) {
-    return 1800
-  }
-}
