@@ -12,8 +12,6 @@ const Autocomplete = () => {
     const handlePlaceChange = (place) => {
         dispatch({ type: 'UPDATE_PLACE', value: place });
     };
-    
-    const urlBase = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCsZl0YbAGyjngFuAuaoSDIMUJAW8omovM&libraries=places";
 
     // TODO: handle enter keyDown to select the first option (will trigger place_changed listener and alter state)
 
@@ -37,16 +35,13 @@ const Autocomplete = () => {
         }
     }
 
-
     useEffect(() => {
-        loadScript(urlBase, () => {
-            const input = document.getElementById('autocomplete');
-            const autocomplete = new google.maps.places.Autocomplete(input); // eslint-disable-line no-undef
-            autocomplete.setTypes('establishment');
-            autocomplete.setBounds(geoBias()); 
-            autocomplete.addListener('place_changed', () => {
-                handlePlaceChange(autocomplete.getPlace());
-            });
+        const input = document.getElementById('autocomplete');
+        const autocomplete = new google.maps.places.Autocomplete(input); // eslint-disable-line no-undef
+        autocomplete.setTypes('establishment');
+        autocomplete.setBounds(geoBias()); 
+        autocomplete.addListener('place_changed', () => {
+            handlePlaceChange(autocomplete.getPlace());
         });
     },[]); // eslint-disable-line
     
@@ -59,20 +54,6 @@ const Autocomplete = () => {
             />
         </div>
     );
-
-    // loads the script at the URL and triggers the callback when it's ready
-    function loadScript(url, callback) {
-    const head = document.getElementsByTagName('head')[0];
-    const script = document.createElement('script');
-
-    script.type = 'text/javascript';
-    script.src = url;
-
-    script.onreadystatechange = callback;
-    script.onload = callback;
-
-    head.appendChild(script);
-  }
 };
 
 export default Autocomplete;
