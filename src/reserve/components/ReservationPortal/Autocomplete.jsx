@@ -48,7 +48,7 @@ const Autocomplete = () => {
                 handlePlaceChange(autocomplete.getPlace());
             });
         });
-    });
+    },[]); // eslint-disable-line
     
     return (
         <div>
