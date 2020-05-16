@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   Map,
   Marker,
   TileLayer,
   Polyline,
+  Popup,
   Tooltip,
 } from 'react-leaflet';
 import { useDispatch } from 'react-redux';
@@ -16,7 +17,7 @@ import { getParkingSpots } from '../utils/spaceGeneration';
 import DrawingTool from './DrawingTool';
 import AreaLayer from './AreaLayer';
 
-const defaultLatLng = [40.4514974, -79.9902457]; // Somewhere in Pittsburgh
+const defaultLatLng = [40.452403, -79.982003]; // Somewhere in Pittsburgh
 
 const processCoordData = rawCoord.features.map((feat) => ({
   ...feat,
@@ -42,6 +43,29 @@ const mapLayerKeys = ['esriWorldImagery', 'Stamen_TonerLabels'];
 
 export default () => {
   const dispatch = useDispatch();
+  const [places, setPlaces] = useState([]);
+  const [center, setCenter] = useState([defaultLatLng[0], defaultLatLng[1]]);
+
+  useEffect(() => {
+    const location = new google.maps.LatLng(center[0], center[1]) // eslint-disable-line no-undef
+    const service = new google.maps.places.PlacesService(document.createElement('div'));  // eslint-disable-line no-undef
+
+    const request = {
+      location,
+      radius: '500',
+      type: ['establishment']
+    }
+
+    service.nearbySearch(request, (results, status) => {
+      if (status === "OK") {
+        setPlaces(results)
+        return
+      }
+      console.log("Error Searching For Nearby Places")
+    });
+
+  }, [center]);
+
 
   const handleMouseMove = ({ latlng }) => {
     dispatch({ type: 'UPDATE_MOUSE_POSITION', value: latlng });
@@ -54,6 +78,9 @@ export default () => {
       dispatch({ type: 'FINISH_AREA' });
     }
   };
+  const handleViewportChanged = ({ center }) => {
+    setCenter(center)
+  }
 
   return (
     <StyledMap
@@ -61,6 +88,7 @@ export default () => {
       center={defaultLatLng}
       zoom={zoom}
       zoomControl={false}
+      onViewportChanged={handleViewportChanged}
       onClick={handleMapClick}
       onMouseMove={handleMouseMove}
       onKeyDown={handleKeyDown}
@@ -77,6 +105,24 @@ export default () => {
           style={{ opacity: 0.1 }}
         />
       ))}
+
+      {places
+        ? (places.map((place) => {
+          return (
+            <Marker position={[
+              place.geometry.location.lat(),
+              place.geometry.location.lng()]}
+            >
+              <Popup>
+                <span>name: {place.name}</span><br />
+                <span>status: {place.business_status}</span><br />
+                <span>type: {place.types.map(type => <span key={type}> {type} </span>)}</span>
+              </Popup>
+            </Marker>
+          )
+        }))
+        : null
+      }
 
       {processCoordData.map((line, i) => {
         const spots = getParkingSpots(line, 0);
