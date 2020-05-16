@@ -2,13 +2,13 @@ import React, { useEffect, useRef } from 'react';
 
 import { useDispatch } from 'react-redux';
 
-const Autocomplete = () => {
+const Autocomplete = (props) => {
     const dispatch = useDispatch();
     const inputRef = useRef();
 
     // 4800m = 3 miles
     const searchRadius = 4800;
-    const defaultCenter = { lat: 40.44, long: -79.99};
+    const defaultCenter = { lat: 40.44, long: -79.99 };
 
     const handlePlaceChange = (place) => {
         dispatch({ type: 'UPDATE_PLACE', value: place });
@@ -44,7 +44,7 @@ const Autocomplete = () => {
         autocomplete.addListener('place_changed', () => {
             handlePlaceChange(autocomplete.getPlace());
         });
-    }, [inputRef])  
+    }, [inputRef])
 
     return (
         <div>
@@ -52,7 +52,7 @@ const Autocomplete = () => {
                 id="autocomplete"
                 ref={inputRef}
                 type="text"
-                placeholder="Search a business, address, or intersection"
+                placeholder={props.placeholder || "Search a business, address, or intersection"}
             />
         </div>
     );
