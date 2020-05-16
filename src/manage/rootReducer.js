@@ -61,7 +61,7 @@ export default (state = initialState, action) => {
     case 'UPDATE_PLACE':
       return {
         ...state,
-        destination: action.value
+        destination: action.value,
       };
     default:
       return state;
