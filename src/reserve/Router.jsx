@@ -9,6 +9,7 @@ import { createStore } from 'redux';
 
 import rootReducer from './reducers/rootReducer';
 import ReservationPortal from './components/ReservationPortal/ReservationPortal';
+import Confirmation from './components/Confirmation/Confirmation';
 
 const store = createStore(
   rootReducer,
@@ -24,6 +25,9 @@ export default () => {
       <Switch>
         <Route path={`${match.url}/`} exact>
           <ReservationPortal />
+        </Route>
+        <Route path={`${match.url}/confirm/:id`} exact>
+          <Confirmation />
         </Route>
       </Switch>
     </Provider>

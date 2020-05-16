@@ -6,7 +6,7 @@ import {
   Wrapper,
 } from './SpotSearchCardStyles';
 
-import Autocomplete from './Autocomplete';
+import Autocomplete from '../../../common/components/Autocomplete';
 import TimeSelect from './TimeSelect';
 
 const testSubmit = () => {
