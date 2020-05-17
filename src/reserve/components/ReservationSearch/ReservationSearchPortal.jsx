@@ -1,25 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Card, Button } from '@material-ui/core';
 
 import {
   Map,
-  Polygon,
+  GeoJSON,
   TileLayer,
 } from 'react-leaflet';
-import { Button } from '@material-ui/core';
+
 import { Link } from 'react-router-dom';
-import Icon from '@mdi/react';
-import { mdiArrowRight } from '@mdi/js';
-import {
-  SearchControls,
-} from './ReservationSearchPortalStyles';
+import areas from '../../mockData/areas';
+import { SearchControls } from './ReservationSearchPortalStyles';
 
 import Autocomplete from '../ReservationPortal/Autocomplete';
 import TimeSelect from '../ReservationPortal/TimeSelect';
 
-// import { getMapCoords } from '../../utils/geoUtil';
 import { mapSources, zoom } from '../../../common/constants/map';
-import colors from '../../../common/constants/colors';
 
 const StyledMap = styled(Map)`
   position: fixed;
@@ -43,58 +39,89 @@ const BottomControls = styled.div`
   display: flex;
   flex-flow: column nowrap;
   align-items: stretch;
-  
-  padding: 1rem;
+
+  /* need gradient */
 `;
+
+const Carousel = styled.div`
+  height: 10rem; /* this should be auto - reviewer please call me out on this */
+  overflow: hidden;
+  white-space: nowrap;
+`;
+
+const CarouselItem = styled.div`
+  width: 100%;
+  height: 100%;
+  padding: 1rem 2rem;
+
+  & > * { height: 100%; padding: 1rem; } /* delet this */
+`;
+
+const ButtonContainer = styled.div`
+  padding: 1rem;
+
+  & > * {
+    width: 100%;
+    display: block !important;
+    text-align: center;
+    text-transform: capitalize !important;
+  }
+`;
+
 export default () => {
-  const mapLayerKeys = ['esriWorldImagery', 'Stamen_TonerLabels'];
-  // const defaultMapCenter = [40.44, -79.99];
-
-  /* const spaces = [{
-    type: 'FeatureCollection',
-    features: [{
-      type: 'Feature',
-      properties: {
-        shape: 'Polygon',
-        name: 'Unnamed Layer',
-        category: 'default',
-      },
-      geometry: {
-        type: 'Polygon',
-        coordinates: [
-          [
-            [-79.960943, 40.46987],
-            [-79.960846, 40.469808],
-            [-79.960637, 40.470115],
-            [-79.960728, 40.470151],
-            [-79.960943, 40.46987],
-          ],
-        ],
-      },
-      id: '469b4c6e-e4ab-4889-8d85-a40f68f23a03',
-    }],
-  }]; */
-
-  const coordsRaw = [
-    [40.46987, -79.960943],
-    [40.469808, -79.960846],
-    [40.470115, -79.960637],
-    [40.470151, -79.960728],
-    [40.46987, -79.960943],
-  ];
+  const mapLayerKeys = ['openStreetMap'];
+  const defaultMapCenter = [40.46575, -79.9492972, 17];
 
   return (
     <div>
 
       <BottomControls>
-        <Button
-          variant="contained"
-          color="primary"
-          component={Link}
-          to="/confirm/1234"
-        >
-          Continue to reserve
-        </Button>
+        <Carousel>
+          {areas.map(({
+            pricePerSession,
+            timesAvailable: { startTime, endTime },
+            spaces,
+            maxDurationMinutes,
+            areaId,
+          }) => (
+            <CarouselItem key={areaId}>
+              <Card elevation={5}>
+                <div>
+                  $
+                  {pricePerSession}
+                </div>
+                <div>Available from</div>
+                <div>
+                  {startTime}
+                  {' '}
+                  -
+                  {' '}
+                  {endTime}
+                </div>
+                <div>
+                  {maxDurationMinutes}
+                  {' '}
+                  min. max
+                </div>
+                <div>
+                  {spaces}
+                  {' '}
+                  spots free
+                </div>
+              </Card>
+            </CarouselItem>
+          ))}
+        </Carousel>
+        <ButtonContainer>
+          <Button
+            variant="contained"
+            color="primary"
+            component={Link}
+            to="/confirm/1234"
+          >
+            Continue to reserve
+          </Button>
+        </ButtonContainer>
       </BottomControls>
 
       <SearchControls>
@@ -106,7 +133,7 @@ export default () => {
 
       <StyledMap
         id="mapId"
-        center={coordsRaw[0]}
+        center={defaultMapCenter}
         zoom={zoom}
         zoomControl={false}
       >
@@ -122,8 +149,9 @@ export default () => {
           />
         ))}
 
-        <Polygon color="purple" positions={coordsRaw} />
-
+        {areas.map(({ geojson }) => (
+          <GeoJSON color="purple" data={geojson} />
+        ))}
       </StyledMap>
     </div>
   );

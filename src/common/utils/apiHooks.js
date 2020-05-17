@@ -10,7 +10,7 @@ export default (path, { method, body }) => {
   const doFetch = async () => {
     fetch(`http://service.pittscurb.com/${path}`, {
       body: JSON.stringify(body),
-      method
+      method,
     })
       .then((res) => res.json())
       .then((parsedRes) => {
