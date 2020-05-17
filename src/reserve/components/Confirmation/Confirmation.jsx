@@ -78,7 +78,7 @@ const Confirmation = () => {
         </Description>
         <SectionHeader>
           Pickup Instructions from
-          {' '}
+          &nbsp;
           {business.name}
           :
         </SectionHeader>
@@ -89,7 +89,7 @@ const Confirmation = () => {
           <li>We'll come to your vehicle</li>
           <li>
             <a href={`tel:${business.phone}`}>Call/text us</a>
-            {' '}
+            &nbsp;
             on arrival
           </li>
           <li>Order number required</li>

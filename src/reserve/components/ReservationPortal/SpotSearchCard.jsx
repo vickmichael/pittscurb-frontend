@@ -51,19 +51,19 @@ const SpotSearchCard = () => {
 
         <div className="example-item">
           <span>Restaurant</span>
-          {' '}
+          &nbsp;
           - "Mad Mex, Round Corner"
         </div>
 
         <div className="example-item">
           <span>Retail</span>
-          {' '}
+          &nbsp;
           - "Brambler Boutique"
         </div>
 
         <div className="example-item">
           <span>Address</span>
-          {' '}
+          &nbsp;
           - "502 E. Ohio St., Pittsburgh"
         </div>
       </ExampleWrapper>

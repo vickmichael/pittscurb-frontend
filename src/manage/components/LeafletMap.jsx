@@ -170,9 +170,9 @@ export default () => {
                   type:
                   {place.types.map((type) => (
                     <span key={type}>
-                      {' '}
+                      &nbsp;
                       {type}
-                      {' '}
+                      &nbsp;
                     </span>
                   ))}
                 </span>
@@ -200,7 +200,7 @@ export default () => {
                       <span>
                         {property}
                         :
-                        {' '}
+                        &nbsp;
                       </span>
                       <span>{line.properties[property]}</span>
                     </div>

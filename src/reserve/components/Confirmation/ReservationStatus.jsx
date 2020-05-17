@@ -55,9 +55,9 @@ const ReservationStatus = ({ start, end }) => {
       <Status>{expired ? 'EXPIRED' : minRemaining}</Status>
       <Uppercase>
         {expired ? -minRemaining : ''}
-        {' '}
+        &nbsp;
         minutes
-        {' '}
+        &nbsp;
         {expired ? 'ago' : ''}
       </Uppercase>
     </BaseStatus>
