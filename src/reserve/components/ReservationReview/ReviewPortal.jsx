@@ -43,7 +43,7 @@ const handleSubmit = () => {
   const body = new Object();
 
   body.countryCode = 1;
-  body.phoneNumber = 8322293597;
+  body.phoneNumber = 6144064527;
   body.businessName = 'APTEKA';
   body.endTime = '12:00pm';
   body.startTime = '11:30am';
@@ -56,12 +56,28 @@ const handleSubmit = () => {
   // const response = useFetch("reservation", "POST", requestBody);
 
   fetch(`http://service.pittscurb.com/${path}`, {
+    headers: {
+      'Content-type': 'application/json'
+    },
     body: JSON.stringify(body),
     method,
   })
     .then((res) => res.json())
     .then((res) => console.log(res));
 };
+
+const startTime = new Date();
+const endTime = new Date();
+
+console.log(startTime.toDateString());
+console.log(endTime.toDateString());
+
+startTime.setHours(11);
+startTime.setMinutes(30);
+
+endTime.setHours(12);
+endTime.setMinutes(0);
+
 
 export default () => {
   const { id } = useParams();
@@ -81,7 +97,7 @@ export default () => {
         </Header>
 
         <SummaryContainer>
-          <input type="text" placeholder={`${humanReadableTime(reservation.start)} - ${humanReadableTime(reservation.end)} today`} />
+          <input type="text" placeholder={`${humanReadableTime(startTime)} - ${humanReadableTime(endTime)} today`} />
           <br />
           <input type="text" placeholder={`300ft walk from ${business.name}`} />
         </SummaryContainer>
