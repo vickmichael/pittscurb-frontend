@@ -6,6 +6,10 @@ import {
   Polygon,
   TileLayer,
 } from 'react-leaflet';
+import { Button } from '@material-ui/core';
+import { Link } from 'react-router-dom';
+import Icon from '@mdi/react';
+import { mdiArrowRight } from '@mdi/js';
 import {
   SearchControls,
 } from './ReservationSearchPortalStyles';
@@ -15,10 +19,6 @@ import TimeSelect from '../ReservationPortal/TimeSelect';
 
 // import { getMapCoords } from '../../utils/geoUtil';
 import { mapSources, zoom } from '../../../common/constants/map';
-import {Button} from "@material-ui/core";
-import {Link} from "react-router-dom";
-import Icon from "@mdi/react";
-import { mdiArrowRight} from "@mdi/js";
 import colors from '../../../common/constants/colors';
 
 const StyledMap = styled(Map)`
@@ -47,8 +47,6 @@ const BottomControls = styled.div`
   padding: 1rem;
 `;
 export default () => {
-
-
   const mapLayerKeys = ['esriWorldImagery', 'Stamen_TonerLabels'];
   // const defaultMapCenter = [40.44, -79.99];
 
@@ -94,7 +92,9 @@ export default () => {
           color="primary"
           component={Link}
           to="/confirm/1234"
-        >Continue to reserve</Button>
+        >
+          Continue to reserve
+        </Button>
       </BottomControls>
 
       <SearchControls>

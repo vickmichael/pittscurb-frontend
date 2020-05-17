@@ -4,11 +4,9 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
-import { createMuiTheme, ThemeProvider } from "@material-ui/core";
-
+import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 
 import colors from './common/constants/colors';
-
 import Management from './manage/Router';
 import Reservation from './reserve/Router';
 
@@ -16,9 +14,9 @@ const theme = createMuiTheme({
   palette: {
     primary: {
       main: colors.primary,
-    }
-  }
-})
+    },
+  },
+});
 export default () => (
   <ThemeProvider theme={theme}>
     <Router>
