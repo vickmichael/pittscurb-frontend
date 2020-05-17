@@ -167,5 +167,3 @@ export const BarButton = styled.button`
   padding: 0.75rem;
   font-size: 1rem;
 `;
-
-

@@ -90,7 +90,6 @@ export default () => {
     }
   }, [center, zoom]);
 
-
   const handleMouseMove = ({ latlng }) => {
     dispatch({ type: 'UPDATE_MOUSE_POSITION', value: latlng });
   };
@@ -102,7 +101,7 @@ export default () => {
       dispatch({ type: 'FINISH_AREA' });
     }
   };
-  const handleViewportChanged = ({ newCenter, newZoom }) => {
+  const handleViewportChanged = ({ center: newCenter, zoom: newZoom }) => {
     mapRef.current.leafletElement.closePopup();
     setCenter(newCenter);
     setZoom(newZoom);

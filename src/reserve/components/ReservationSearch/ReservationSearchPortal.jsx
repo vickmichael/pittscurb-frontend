@@ -117,7 +117,7 @@ export default () => {
             variant="contained"
             color="primary"
             component={Link}
-            to="/confirm/1234"
+            to="/review"
           >
             Continue to reserve
           </Button>

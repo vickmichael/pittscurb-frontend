@@ -36,7 +36,7 @@ export default () => {
           New Project
         </Button>
       </h1>
-      <Link to={`${url}/${response.projectID}/`}>{response.projectName}</Link>
+      <Link to={`${url}${response.projectID}/`}>{response.projectName}</Link>
     </>
   );
 };

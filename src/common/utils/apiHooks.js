@@ -2,16 +2,13 @@
 /* eslint-disable import/prefer-default-export */
 import { useEffect, useState } from 'react';
 
-export default (path, { method, body }) => {
+export default (path) => {
   const [response, setResponse] = useState();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState();
 
   const doFetch = async () => {
-    fetch(`http://service.pittscurb.com/${path}`, {
-      body: JSON.stringify(body),
-      method,
-    })
+    fetch(`http://service.pittscurb.com/${path}`)
       .then((res) => res.json())
       .then((parsedRes) => {
         setLoading(false);
