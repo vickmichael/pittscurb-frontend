@@ -76,9 +76,9 @@ export default () => {
         </Bullets>
 
         <UserInfoContainer>
-          <form>
-            <input type="tel" placeholder="Your mobile number" /><br />
-            <input type="text" placeholder="Vehicle color, make, and model" /><br />
+          <form onSubmit={handleSubmit()}>
+            <input id="phoneNumber" type="tel" placeholder="Your mobile number" /><br />
+            <input id="carInfo" type="text" placeholder="Vehicle color, make, and model" /><br />
             <SubmitButton>Reserve Now</SubmitButton>
           </form>
         </UserInfoContainer>
