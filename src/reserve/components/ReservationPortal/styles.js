@@ -113,6 +113,37 @@ export const SalesPoints = styled.div`
   }
 `;
 
+export const Footer = styled.div`
+  height: 20rem;
+  background-color: #F8F6FA;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  font-family: Muli;
+
+  .pittsburgh-img {
+    width: 3rem;
+    height: 3rem;
+    margin-right: 1rem;
+  }
+
+  .supported {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #4D4D4D;
+    margin-bottom: 4rem;
+    font-size: 1.5rem;
+  }
+
+  .copyright {
+    color: #848484;
+  }
+`;
+
 export const Feedback = styled.div`
   align-items: center;
   display: flex;
@@ -142,8 +173,11 @@ export const Feedback = styled.div`
       background: #FFFFFF;
       border-radius: 4rem;
       box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.13);
-      color: #8D1EF8;
       font-size: 1rem;
+    }
+
+    .feedback-email > a {
+      color: #8D1EF8;
     }
   }
 `;
