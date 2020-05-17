@@ -8,6 +8,7 @@ import {
 
 import Autocomplete from '../ReservationPortal/Autocomplete';
 import TimeSelect from '../ReservationPortal/TimeSelect';
+import CarouselCard from './CarouselCard';
 
 import { getMapCoords } from '../../utils/geoUtil';
 import { mapSources, zoom } from '../../../common/constants/map'
@@ -99,6 +100,7 @@ export default () => {
       <Polygon color="purple" positions={coordsRaw} />
 
       </StyledMap>
+      <CarouselCard />
     </div>
   );
 };
