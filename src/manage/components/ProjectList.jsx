@@ -8,11 +8,11 @@ export default () => {
   return (
     <>
       <h1>My Projects</h1>
-      <Link to={`${url}my-basic-parking-project/`}>My Basic Parking Project</Link>
+      <Link to={`${url}/my-basic-parking-project/`}>My Basic Parking Project</Link>
       <br />
-      <Link to={`${url}eastern-restaurants/`}>Eastern-Restaurants</Link>
+      <Link to={`${url}/eastern-restaurants/`}>Eastern-Restaurants</Link>
       <br />
-      <Link to={`${url}fill-the-strip/`}>Fill the Strip!</Link>
+      <Link to={`${url}/fill-the-strip/`}>Fill the Strip!</Link>
     </>
   );
 };
