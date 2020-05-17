@@ -335,7 +335,7 @@ const testState = {
     html_attributions: [],
     utc_offset_minutes: -240,
   },
-  time: '2:00 PM',
+  time: '6:00 PM',
 };
 
 const spotSearchReducer = (state = testState, action) => {
