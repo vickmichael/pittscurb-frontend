@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
-export const SearchControls = styled.div`
+
+  export const SearchControls = styled.div`
     position: fixed;
-    top: 0rem;
-    left: 0rem;
-    padding: 1rem;
-    width: 100%;
-    max-width: 30rem;
+    top: 1em;
+    left: 1em;
+    min-width:340px;
+    width: 30vw;
 
     & form .dropdown-wrapper {
       position: relative;
@@ -21,7 +21,7 @@ export const SearchControls = styled.div`
     & form input,select {
       height: 3.125rem;
       margin-bottom: .5rem;
-      padding: 1rem .75rem;
+      padding: .875rem .75rem;
       width: 100%;
       
       background: #FFFFFF;
