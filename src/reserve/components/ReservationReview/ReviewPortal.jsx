@@ -23,7 +23,7 @@ const reservationById = (id) => {
     end: '05-16-2020 19:20',
     parkingInstructions: 'Pull up to the curb behind the bus stop. Parallel parking.',
     business: {
-      name: 'DiAnoia\'s Eatery',
+      name: 'APTEKA',
       phone: '+1234567890',
       location: {
         lat: '3',
