@@ -11,9 +11,9 @@ import SpotSearchCard from './SpotSearchCard';
 
 import burgerAndSoda from '../../../common/svgs/burger_and_soda.svg';
 import arrow from '../../../common/svgs/arrow.svg';
-import best_spot from '../../../common/svgs/best_spot.svg';
-import hamburger_magnify from '../../../common/svgs/hamburger_magnify.svg';
-import cellphone_checkmark from '../../../common/svgs/cellphone_checkmark.svg';
+import bestSpot from '../../../common/svgs/best_spot.svg';
+import hamburgerMagnify from '../../../common/svgs/hamburger_magnify.svg';
+import cellphoneCheckmark from '../../../common/svgs/cellphone_checkmark.svg';
 
 export default () => (
   <Wrapper>
@@ -54,26 +54,29 @@ export default () => (
 
       <div className="sales-points-list">
         <div className="sales-point-item">
-          <img src={hamburger_magnify} alt="" />
+          <img src={hamburgerMagnify} alt="" />
 
           <div>
-            Search for the business you're picking up from and choose the 20 minute window that fits best.
+            Search for the business you're picking up from and choose the
+            20 minute window that fits best.
           </div>
         </div>
 
         <div className="sales-point-item">
-          <img src={best_spot} alt="" />
+          <img src={bestSpot} alt="" />
 
           <div>
-            We’ll auto-find the best available spot in newly created parking areas, and you'll get safe pickup instructions.
+            We’ll auto-find the best available spot in newly created parking areas,
+            and you'll get safe pickup instructions.
           </div>
         </div>
 
         <div className="sales-point-item">
-          <img src={cellphone_checkmark} alt="" />
+          <img src={cellphoneCheckmark} alt="" />
 
           <div>
-            You'll get an SMS confirmation link with an easy way to tell the business you've arrived, change your reservation, and a receipt to show patrol officers if necessary.
+            You'll get an SMS confirmation link with an easy way to tell the business you've
+            arrived, change your reservation, and a receipt to show patrol officers if necessary.
           </div>
         </div>
       </div>
@@ -86,8 +89,8 @@ export default () => (
         </div>
 
         <div className="feedback-email">
-          <a href="mailto:help@getaspot.io">
-            Email us at help@getaspot.io
+          <a href="mailto:help@pittscurb.com">
+            Email us at help@pittscurb.com
           </a>
         </div>
       </div>
