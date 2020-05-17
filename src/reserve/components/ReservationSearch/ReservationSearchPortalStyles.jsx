@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 
+
   export const SearchControls = styled.div`
     position: fixed;
     top: 1em;
     left: 1em;
+    min-width:340px;
     width: 30vw;
 
     & form .dropdown-wrapper {
@@ -36,5 +38,3 @@ import styled from 'styled-components';
       color: #2B2B2B;
     }
   `;
-
-  
