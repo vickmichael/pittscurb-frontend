@@ -11,8 +11,9 @@ import SpotSearchCard from './SpotSearchCard';
 
 import burgerAndSoda from '../../../common/svgs/burger_and_soda.svg';
 import arrow from '../../../common/svgs/arrow.svg';
-import hamburger from '../../../common/svgs/hamburger.svg';
-import cellphoneOuter from '../../../common/svgs/cellphone_outer.svg';
+import best_spot from '../../../common/svgs/best_spot.svg';
+import hamburger_magnify from '../../../common/svgs/hamburger_magnify.svg';
+import cellphone_checkmark from '../../../common/svgs/cellphone_checkmark.svg';
 
 export default () => (
   <Wrapper>
@@ -53,26 +54,26 @@ export default () => (
 
       <div className="sales-points-list">
         <div className="sales-point-item">
-          <img src={hamburger} alt="" />
+          <img src={hamburger_magnify} alt="" />
 
           <div>
-            Search your destination, or find one near you
+            Search for the business you're picking up from and choose the 20 minute window that fits best.
           </div>
         </div>
 
         <div className="sales-point-item">
-          <img src={hamburger} alt="" />
+          <img src={best_spot} alt="" />
 
           <div>
-            We’ll auto-find the best available spot
+            We’ll auto-find the best available spot in newly created parking areas, and you'll get safe pickup instructions.
           </div>
         </div>
 
         <div className="sales-point-item">
-          <img src={cellphoneOuter} alt="" />
+          <img src={cellphone_checkmark} alt="" />
 
           <div>
-            Reserve in one quick step, and we’ll text you any updates
+            You'll get an SMS confirmation link with an easy way to tell the business you've arrived, change your reservation, and a receipt to show patrol officers if necessary.
           </div>
         </div>
       </div>
@@ -80,7 +81,7 @@ export default () => (
 
     <Feedback>
       <div className="feedback-content">
-        <div>
+        <div className="questions">
           Questions? Feedback?
         </div>
 
@@ -93,4 +94,3 @@ export default () => (
     </Feedback>
   </Wrapper>
 );
-

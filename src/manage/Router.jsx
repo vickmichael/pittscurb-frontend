@@ -12,6 +12,7 @@ import rootReducer from './rootReducer';
 import {
   LeafletMap, NavBar, ProjectList, ProjectDetail, CreateRegion,
 } from './components';
+import { FourOhFour } from '../common/components';
 
 const store = createStore(
   rootReducer,
@@ -41,6 +42,7 @@ export default () => {
           <Route path={`${match.url}/:project/`} exact component={ProjectDetail} />
           <Route path={`${match.url}/:project/new-region/`} exact component={CreateRegion} />
           <Route path={`${match.url}/:project/:region/`} exact component={LeafletMap} />
+          <Route path={`${match.url}/*`} component={FourOhFour} />
         </Switch>
       </PageContainer>
     </Provider>

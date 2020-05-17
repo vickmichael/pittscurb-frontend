@@ -1,26 +1,18 @@
 import React from 'react';
 import {
-  HashRouter as Router,
+  BrowserRouter as Router,
   Route,
+  Switch,
 } from 'react-router-dom';
-
-import { FourOhFour } from './common/components';
 
 import Management from './manage/Router';
 import Reservation from './reserve/Router';
 
 export default () => (
   <Router>
-    <Route path="/">
-      <Reservation />
-    </Route>
-
-    <Route path="/manage">
-      <Management />
-    </Route>
-
-    <Route path="*">
-      <FourOhFour />
-    </Route>
+    <Switch>
+      <Route path="/manage/" component={Management} />
+      <Route path="/" component={Reservation} />
+    </Switch>
   </Router>
 );
