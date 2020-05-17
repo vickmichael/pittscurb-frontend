@@ -36,6 +36,8 @@ module.exports = {
     'no-case-declarations': 0,
     'no-multi-spaces': 0,
     'react/jsx-no-bind': 0,
-    'no-plusplus': 0
+    'no-plusplus': 0,
+    'react/no-unescaped-entities': 0,
+    'consistent-return': 0
   },
 };

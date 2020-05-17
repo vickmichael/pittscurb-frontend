@@ -11,7 +11,16 @@ export default () => {
   const { loading, response, error } = useFetch(`location/project/${project}`);
 
   if (error) {
-    return (<h1>Error!</h1>);
+    console.log(error);
+    if (error.toString().includes('Unexpected end of JSON input')) {
+      return null;
+    }
+    return (
+      <h1>
+        Error loading project:
+        {project}
+      </h1>
+    );
   }
 
   if (loading || !response) {
@@ -24,7 +33,14 @@ export default () => {
       <h2>
         Regions
         &nbsp;&nbsp;&nbsp;
-        <Button variant="contained" color="primary" to={`${url}new-region/`}>Create Region</Button>
+        <Button
+          variant="contained"
+          color="primary"
+          to={`${url}new-region/`}
+          component={Link}
+        >
+          Create Region
+        </Button>
       </h2>
       <Link to={`${url}415f8e60-4516-48a2-9302-4dce53fd38b6/`}>Davis-land</Link>
     </>
