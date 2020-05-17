@@ -62,6 +62,7 @@ const mapLayerKeys = ['esriWorldImagery', 'Stamen_TonerLabels'];
 export default () => {
   const dispatch = useDispatch();
   const loaded = useRef(false);
+  const mapRef = useRef(null)
   const globalStateLocation = useSelector((state) => state.destination);
   const [currentLocation, setCurrentLocation] = useState(defaultLatLng);
   const [places, setPlaces] = useState([]);
@@ -102,6 +103,7 @@ export default () => {
     }
   };
   const handleViewportChanged = ({ center, zoom }) => {
+    mapRef.current.leafletElement.closePopup();
     setCenter(center)
     setZoom(zoom)
   }
@@ -122,6 +124,7 @@ export default () => {
         </form>
       </StyleInput>
       <StyledMap
+        ref={mapRef}
         id="mapId"
         center={currentLocation}
         zoom={zoom}
