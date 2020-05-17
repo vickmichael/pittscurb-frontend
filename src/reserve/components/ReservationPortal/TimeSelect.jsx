@@ -2,7 +2,7 @@ import  React from 'react';
 
 import clockSvg from '../../../common/svgs/clock.svg';
 import { getTimeSuggestions } from '../../utils/timeHelper';
-import { useDispatch } from 'react-redux';
+import { useDispatch, connect } from 'react-redux';
 
 const TimeSelect = () => {
   const dispatch = useDispatch();

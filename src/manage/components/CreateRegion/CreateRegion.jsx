@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {  Button, Chip, TextField }  from '@material-ui/core';
+import { Button, Chip, TextField }  from '@material-ui/core';
 import styled from 'styled-components';
 import { mdiClose, mdiPlus } from '@mdi/js';
 import Icon from '@mdi/react';

@@ -2,13 +2,13 @@ import React, { useEffect, useRef } from 'react';
 
 import { useDispatch } from 'react-redux';
 
-export default () => {
+const Autocomplete = (props) => {
     const dispatch = useDispatch();
     const inputRef = useRef();
 
     // 4800m = 3 miles
     const searchRadius = 4800;
-    const defaultCenter = { lat: 40.44, lng: -79.99};
+    const defaultCenter = { lat: 40.44, long: -79.99 };
 
     const handlePlaceChange = (place) => {
         dispatch({ type: 'UPDATE_PLACE', value: place });
@@ -22,7 +22,7 @@ export default () => {
             navigator.geolocation.getCurrentPosition((position) => {
                 const center = {
                     lat: position.coords.latitude,
-                    lng: position.coords.longitude
+                    long: position.coords.longitude
                 };
                 return new google.maps.Circle( // eslint-disable-line no-undef
                     { center: center, radius: searchRadius }
@@ -44,7 +44,7 @@ export default () => {
         autocomplete.addListener('place_changed', () => {
             handlePlaceChange(autocomplete.getPlace());
         });
-    }, [inputRef])  
+    }, [inputRef])
 
     return (
         <div>
@@ -52,9 +52,10 @@ export default () => {
                 id="autocomplete"
                 ref={inputRef}
                 type="text"
-                placeholder="Search a business, address, or intersection"
+                placeholder={props.placeholder || "Search a business, address, or intersection"}
             />
         </div>
     );
 };
 
+export default Autocomplete;

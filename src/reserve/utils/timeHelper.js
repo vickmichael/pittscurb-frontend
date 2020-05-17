@@ -2,7 +2,7 @@ import moment from 'moment';
 
 // converts the times to "HH:MM a" format
 export const hourFormat = (raw) => raw.map(
-  (rawTime) => moment(rawTime).format('LT')
+  (rawTime) => moment(rawTime).format('LT'),
 );
 
 // calculates the start of the next 20 minute window
