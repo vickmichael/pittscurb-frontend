@@ -25,8 +25,8 @@ export default () => {
     <Provider store={store}>
       <Switch>
         <Route path={`${match.url}/`} exact component={ReservationPortal} />
-        <Route path={`${match.url}/search`} exact component={ReservationSearchPortal} />
-        <Route path={`${match.url}/confirm/:id`} exact component={Confirmation} />
+        <Route path={`${match.url}search`} exact component={ReservationSearchPortal} />
+        <Route path={`${match.url}confirm/:id`} exact component={Confirmation} />
       </Switch>
     </Provider>
   );

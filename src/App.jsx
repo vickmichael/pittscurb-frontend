@@ -11,7 +11,7 @@ import Reservation from './reserve/Router';
 
 export default () => (
   <Router>
-    <Route path="/" exact>
+    <Route path="/">
       <Reservation />
     </Route>
 
