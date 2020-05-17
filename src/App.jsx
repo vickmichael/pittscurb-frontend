@@ -4,6 +4,8 @@ import {
   Route,
 } from 'react-router-dom';
 
+import { FourOhFour } from './common/components';
+
 import Management from './manage/Router';
 import Reservation from './reserve/Router';
 
@@ -15,6 +17,10 @@ export default () => (
 
     <Route path="/manage">
       <Management />
+    </Route>
+
+    <Route path="*">
+      <FourOhFour />
     </Route>
   </Router>
 );
