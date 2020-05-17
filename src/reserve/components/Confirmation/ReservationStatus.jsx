@@ -14,9 +14,12 @@ const WARNING_THRESHOLD = 5;
 const colorFromDiff = (start, end, now) => {
   if ((now - start) < 0) { // if reservation hasn't started
     return colors.grayDark;
-  } if ((now - end) > 0) { // if reservation is expired
+  };
+
+  if ((now - end) > 0) { // if reservation is expired
     return colors.failure;
   }  // if reservation is in progress
+
   const minRemaining = Math.ceil((end - now) / (1000 * 60));
   return minRemaining > WARNING_THRESHOLD ? colors.success : colors.warning;
 };
