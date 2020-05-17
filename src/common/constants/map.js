@@ -46,7 +46,7 @@ export const lineStyles = {
 export const mapSources = {
   openStreetMap: {
     url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-    maxNativeZoom: 24,
+    maxNativeZoom: 19,
     attribution: '',
   },
   esriWorldImagery: {

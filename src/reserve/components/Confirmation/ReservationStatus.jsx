@@ -53,6 +53,7 @@ const ReservationStatus = ({ start, end }) => {
     <BaseStatus startDate={startDate} endDate={endDate} now={now}>
       <Text>
         Reservation
+        &nbsp;
         {!expired && (inProgress ? 'ends in' : 'starts in')}
       </Text>
       <Status>{expired ? 'EXPIRED' : minRemaining}</Status>
