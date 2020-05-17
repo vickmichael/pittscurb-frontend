@@ -12,18 +12,11 @@ import Reservation from './reserve/Router';
 export default () => (
   <Router>
     <Route path="/" exact>
-      <Link to="/manage/">Admin App</Link>
-      <br />
-      <Link to="/reserve/">Consumer App</Link>
+      <Reservation />
     </Route>
 
-    <Switch>
-      <Route path="/manage">
-        <Management />
-      </Route>
-      <Route path="/reserve">
-        <Reservation />
-      </Route>
-    </Switch>
+    <Route path="/manage">
+      <Management />
+    </Route>
   </Router>
 );
