@@ -5,6 +5,7 @@ import {
   SalesPoints,
   SearchSection,
   Wrapper,
+  Footer,
 } from './styles';
 
 import SpotSearchCard from './SpotSearchCard';
@@ -89,11 +90,20 @@ export default () => (
         </div>
 
         <div className="feedback-email">
-          <a href="mailto:help@pittscurb.com">
-            Email us at help@pittscurb.com
+          <a href="mailto:hello@pittscurb.com">
+            Email us at hello@pittscurb.com
           </a>
         </div>
       </div>
     </Feedback>
+    <Footer>
+      <div className="supported">
+        <img className="pittsburgh-img" src="/pittsburgh_coa.png" alt="" />
+        Supported by the City of Pittsburgh
+      </div>
+      <div className="copyright">
+        &copy; PittsCurb 2020
+        </div>
+    </Footer>
   </Wrapper>
 );

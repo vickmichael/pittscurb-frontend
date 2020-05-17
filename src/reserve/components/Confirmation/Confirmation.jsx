@@ -1,7 +1,4 @@
 import React from 'react';
-import {
-  useParams,
-} from 'react-router-dom';
 import Icon from '@mdi/react';
 import { mdiPhone, mdiChat, mdiDirections } from '@mdi/js';
 import ReservationStatus from './ReservationStatus';
@@ -19,52 +16,93 @@ import {
   BarButton,
   Small,
 } from './styles';
+import {
+  useParams
+} from 'react-router-dom';
+import moment from 'moment';
+import { useSelector } from "react-redux";
+import { isMobile } from 'react-device-detect';
 
 
-const reservationById = () => ({
-  start: '05-16-2020 19:00',
-  end: '05-16-2020 19:20',
+const TEST_DATA = {
   parkingInstructions: 'Pull up to the curb behind the bus stop. Parallel parking.',
-  business: {
-    name: 'DiAnoia\'s Eatery',
-    phone: '+1234567890',
-    location: {
-      lat: '3',
-      long: '5',
-    },
-    pickupInstructions: 'Pull up to the curb behind the bus stop. Parallel parking. Call or text (123) 456-7890 when you get here',
-  },
-});
+  pickupInstructions: 'Pull up to the curb behind the bus stop. Parallel parking. Call or text (123) 456-7890 when you get here',
+  start: '05-17-2020 16:00',
+  end: '05-17-2020 16:20',
+  parkingSpotLat: '36.3094989',
+  parkingSpotLong: '-97.3855117',
+};
+
+const reservationById = (id) => {
+  return {
+    parkingInstructions: 'Pull up to the curb behind the bus stop. Parallel parking.',
+    contactNumber: '+12345678900',
+    business: {
+      name: 'DiAnoia\'s Eatery',
+      phone: '+1234567890',
+      location: {
+        lat: '3',
+        long: '5',
+      },
+      pickupInstructions: 'Pull up to the curb behind the bus stop. Parallel parking. Call or text when you get here',
+    }
+  }
+};
+
+// if isCall is false, we'll use a sms: link instead of a tel:
+const contactBusiness = (phone, isCall = true) => {
+  if (phone) {
+    const placeholderText = encodeURIComponent(`Hi, I'm here to pick up my takeout order!`);
+    const link = `${isCall ? 'tel' : 'sms'}:${phone}${isCall ? '' : `&body=${placeholderText}`}`;
+    window.open(link);
+  }
+};
+
+const openMapLink = (lat, long, desktopUrl) => {
+  const link = `comgooglemaps://?saddr=&daddr=${lat},${long}&directionsmode=driving`;
+  if (isMobile) {
+    window.open(link);
+  } else {
+    window.open(desktopUrl);
+  }
+};
 
 const humanReadableTime = (dateStr) => {
-  const date = new Date(dateStr);
-  const options = {
-    hour: 'numeric',
-    minute: 'numeric',
-  };
-  return new Intl.DateTimeFormat('en-US', options).format(date);
+  return moment(dateStr).format("h:mma");
+};
+
+const humanReadableDate = (dateStr) => {
+  return moment(dateStr).format('L');
+};
+
+const isReservationToday = (dateStr) => {
+  const today = moment();
+  return moment(dateStr).isSame(today, 'd');
 };
 
 const Confirmation = () => {
   const { id } = useParams();
+  const { destination, time} = useSelector(state => state.spotSearch);
 
   const reservation = reservationById(id);
-  const { business } = reservation;
+
+  const isToday = isReservationToday(TEST_DATA.start);
+  const expired = moment().isAfter(moment(TEST_DATA.end));
 
   return (
     <Container>
-      <ReservationStatus start={reservation.start} end={reservation.end} />
+      <ReservationStatus start={TEST_DATA.start} end={TEST_DATA.end}/>
       <InfoContainer>
         <Header>
-          You have a spot reserved from
+          You {expired ? 'had' : 'have'} a spot reserved from
           &nbsp;
-          {humanReadableTime(reservation.start)}
+          {humanReadableTime(TEST_DATA.start)}
           &nbsp;
           to
           &nbsp;
-          {humanReadableTime(reservation.end)}
+          {humanReadableTime(TEST_DATA.end)}
           &nbsp;
-          today
+          {isToday ? 'today' : `on ${humanReadableDate(TEST_DATA.start)}` }
         </Header>
         <Description>
           We'll text a confirmation and any updates to (123) 321 4564
@@ -74,21 +112,21 @@ const Confirmation = () => {
           Parking Instructions:
         </SectionHeader>
         <Description>
-          {reservation.parkingInstructions}
+          {TEST_DATA.parkingInstructions}
         </Description>
         <SectionHeader>
           Pickup Instructions from
           &nbsp;
-          {business.name}
+          {destination.name}
           :
         </SectionHeader>
         <Description>
-          {business.pickupInstructions}
+          {TEST_DATA.pickupInstructions}
         </Description>
         <Bullets>
           <li>We'll come to your vehicle</li>
           <li>
-            <a href={`tel:${business.phone}`}>Call/text us</a>
+            <a href={`tel:${destination.international_phone_number}`}>Call/text us</a>
             &nbsp;
             on arrival
           </li>
@@ -98,21 +136,22 @@ const Confirmation = () => {
         <MiniMap />
         <ButtonRow>
           <LeftButtonRow>
-            <MapButton>
+            <MapButton onClick={() => contactBusiness(destination.international_phone_number)}>
               <Icon path={mdiPhone} />
             </MapButton>
-            <MapButton>
+            <MapButton onClick={() => contactBusiness(destination.international_phone_number, false)}>
               <Icon path={mdiChat} />
             </MapButton>
           </LeftButtonRow>
 
-          <MapButton>
+          <MapButton onClick={() => openMapLink(TEST_DATA.parkingSpotLat, TEST_DATA.parkingSpotLong, destination.url)}>
             <Icon path={mdiDirections} />
           </MapButton>
         </ButtonRow>
         <Small>
           Get in touch with
-          {business.name}
+          &nbsp;
+          {destination.name}
         </Small>
         <BarButton>I'm having trouble finding my spot</BarButton>
         <BarButton>Cancel my reservation</BarButton>
