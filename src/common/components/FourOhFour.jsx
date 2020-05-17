@@ -5,13 +5,16 @@ import { Button } from '@material-ui/core';
 import { mdiArrowLeft } from '@mdi/js';
 import Icon from '@mdi/react';
 
-import { Logo } from './';
+import Logo from './Logo';
 
 const StyledLogo = styled(Logo)`
   height: 2rem;
 `;
 
 const Container = styled.div`
+  position: absolute;
+  top: 0rem;
+  z-index: -1;
   width: 100vw;
   height: 100vh;
   background-image: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0), rgba(255,255,255,.2), rgba(255,255,255,1)), url('404.svg');
@@ -19,7 +22,7 @@ const Container = styled.div`
   background-repeat: no-repeat;
   background-position: center bottom;
   padding: 2rem 2rem;
-  
+
   color: #4D4D4D;
 
   display: flex;
@@ -44,7 +47,7 @@ export default () => (
     <div>
       <StyledLogo />
       <BigTitle>Page not found</BigTitle>
-      <Message>Looks like someone took our spot...</Message> 
+      <Message>Looks like someone took our spot...</Message>
     </div>
     <Button
       variant="contained"

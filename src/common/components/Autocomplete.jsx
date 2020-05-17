@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 
 import { useDispatch } from 'react-redux';
 
-const Autocomplete = (props) => {
+const Autocomplete = ({ placeholder }) => {
   const dispatch = useDispatch();
   const inputRef = useRef();
 
@@ -14,7 +14,8 @@ const Autocomplete = (props) => {
     dispatch({ type: 'UPDATE_PLACE', value: place });
   };
 
-  // TODO: handle enter keyDown to select the first option (will trigger place_changed listener and alter state)
+  // TODO: handle enter keyDown to select the first option
+  // (will trigger place_changed listener and alter state)
 
   // calculate bounds for geographic biasing
   const geoBias = () => {
@@ -33,10 +34,13 @@ const Autocomplete = (props) => {
         { center: defaultCenter, radius: searchRadius },
       ).getBounds();
     }
+
+    return null;
   };
 
   useEffect(() => {
-    const autocomplete = new google.maps.places.Autocomplete(inputRef.current); // eslint-disable-line no-undef
+    // eslint-disable-next-line no-undef
+    const autocomplete = new google.maps.places.Autocomplete(inputRef.current);
 
     autocomplete.setTypes('establishment');
     autocomplete.setBounds(geoBias());
@@ -51,7 +55,7 @@ const Autocomplete = (props) => {
         id="autocomplete"
         ref={inputRef}
         type="text"
-        placeholder={props.placeholder || 'Search a business, address, or intersection'}
+        placeholder={placeholder || 'Search a business, address, or intersection'}
       />
     </div>
   );

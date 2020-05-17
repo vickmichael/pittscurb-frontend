@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, useRouteMatch } from 'react-router-dom';
 import {
   ExampleHeader,
   ExampleWrapper,
@@ -6,7 +7,6 @@ import {
   Wrapper,
 } from './SpotSearchCardStyles';
 
-import { Link, useRouteMatch } from 'react-router-dom';
 
 import Autocomplete from './Autocomplete';
 import TimeSelect from './TimeSelect';
@@ -50,15 +50,21 @@ const SpotSearchCard = () => {
         </ExampleHeader>
 
         <div className="example-item">
-          <span>Restaurant</span> - "Mad Mex, Round Corner"
+          <span>Restaurant</span>
+          {' '}
+          - "Mad Mex, Round Corner"
         </div>
 
         <div className="example-item">
-          <span>Retail</span> - "Brambler Boutique"
+          <span>Retail</span>
+          {' '}
+          - "Brambler Boutique"
         </div>
 
         <div className="example-item">
-          <span>Address</span> - "502 E. Ohio St., Pittsburgh"
+          <span>Address</span>
+          {' '}
+          - "502 E. Ohio St., Pittsburgh"
         </div>
       </ExampleWrapper>
     </Wrapper>
