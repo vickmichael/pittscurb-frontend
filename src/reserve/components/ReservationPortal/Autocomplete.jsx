@@ -1,8 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 export default () => {
+  const { destination } = useSelector((state) => state.spotSearch);
   const dispatch = useDispatch();
   const inputRef = useRef();
 
@@ -45,6 +46,11 @@ export default () => {
     autocomplete.addListener('place_changed', () => {
       handlePlaceChange(autocomplete.getPlace());
     });
+
+    if(destination && destination.name && destination.formatted_address) {
+      document.getElementById("autocomplete").value = destination.name + ", " + destination.vicinity;
+    }
+
   }, [inputRef]);
 
   return (
