@@ -13,7 +13,7 @@ import styled from 'styled-components';
 import rawCoord from '../mockData/coord-data.json';
 import { lineStyles, mapSources, zoom as initialZoom } from '../../common/constants/map';
 import { getParkingSpots } from '../utils/spaceGeneration';
-import { getZoomRadii } from '../utils/zoomRadii'
+import { getZoomRadii } from '../utils/zoomRadii';
 
 import DrawingTool from './DrawingTool';
 import AreaLayer from './AreaLayer';
@@ -62,30 +62,30 @@ const mapLayerKeys = ['esriWorldImagery', 'Stamen_TonerLabels'];
 export default () => {
   const dispatch = useDispatch();
   const loaded = useRef(false);
-  const mapRef = useRef(null)
+  const mapRef = useRef(null);
   const globalStateLocation = useSelector((state) => state.destination);
   const [currentLocation, setCurrentLocation] = useState(defaultLatLng);
   const [places, setPlaces] = useState([]);
-  const [zoom, setZoom] = useState(initialZoom)
+  const [zoom, setZoom] = useState(initialZoom);
   const [center, setCenter] = useState([defaultLatLng[0], defaultLatLng[1]]);
 
   useEffect(() => {
     if (zoom < 20) {
-      const location = new google.maps.LatLng(center[0], center[1]) // eslint-disable-line no-undef
+      const location = new google.maps.LatLng(center[0], center[1]); // eslint-disable-line no-undef
       const service = new google.maps.places.PlacesService(document.createElement('div'));  // eslint-disable-line no-undef
 
       const request = {
         location,
         radius: getZoomRadii(zoom),
-        type: ['establishment']
-      }
+        type: ['establishment'],
+      };
 
       service.nearbySearch(request, (results, status) => {
-        if (status === "OK") {
-          setPlaces(results)
-          return
+        if (status === 'OK') {
+          setPlaces(results);
+          return;
         }
-        console.log("Error Searching For Nearby Places")
+        console.log('Error Searching For Nearby Places');
       });
     }
   }, [center, zoom]);
@@ -102,19 +102,22 @@ export default () => {
       dispatch({ type: 'FINISH_AREA' });
     }
   };
-  const handleViewportChanged = ({ center, zoom }) => {
+  const handleViewportChanged = ({ newCenter, newZoom }) => {
     mapRef.current.leafletElement.closePopup();
-    setCenter(center)
-    setZoom(zoom)
-  }
+    setCenter(newCenter);
+    setZoom(newZoom);
+  };
 
   useEffect(() => {
     if (loaded.current) {
-      setCurrentLocation([globalStateLocation.geometry.location.lat(), globalStateLocation.geometry.location.lng()])
+      setCurrentLocation([
+        globalStateLocation.geometry.location.lat(),
+        globalStateLocation.geometry.location.lng(),
+      ]);
     } else {
-      loaded.current = true
+      loaded.current = true;
     }
-  }, [globalStateLocation])
+  }, [globalStateLocation]);
 
   return (
     <>
@@ -147,22 +150,36 @@ export default () => {
         ))}
 
         {places
-          ? (places.map((place) => {
-            return (
-              <Marker position={[
-                place.geometry.location.lat(),
-                place.geometry.location.lng()]}
-              >
-                <Popup>
-                  <span>name: {place.name}</span><br />
-                  <span>status: {place.business_status}</span><br />
-                  <span>type: {place.types.map(type => <span key={type}> {type} </span>)}</span>
-                </Popup>
-              </Marker>
-            )
-          }))
-          : null
-        }
+          ? (places.map((place) => (
+            <Marker position={[
+              place.geometry.location.lat(),
+              place.geometry.location.lng()]}
+            >
+              <Popup>
+                <span>
+                  name:
+                  {place.name}
+                </span>
+                <br />
+                <span>
+                  status:
+                  {place.business_status}
+                </span>
+                <br />
+                <span>
+                  type:
+                  {place.types.map((type) => (
+                    <span key={type}>
+                      &nbsp;
+                      {type}
+                      &nbsp;
+                    </span>
+                  ))}
+                </span>
+              </Popup>
+            </Marker>
+          )))
+          : null}
 
         {false && processCoordData.map((line, i) => {
           const spots = getParkingSpots(line, 0);
@@ -182,8 +199,8 @@ export default () => {
                     <div key={property}>
                       <span>
                         {property}
-                      :
-                      {' '}
+                        :
+                        &nbsp;
                       </span>
                       <span>{line.properties[property]}</span>
                     </div>
