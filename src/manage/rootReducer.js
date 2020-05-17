@@ -4,6 +4,7 @@ const initialState = {
   mousePosition: { lat: 0, lng: 0 },
   boundaries: [],
   regions: [],
+  destination: [],
 };
 
 export default (state = initialState, action) => {
@@ -56,6 +57,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         regions: [...state.regions, action.value],
+      };
+    case 'UPDATE_PLACE':
+      return {
+        ...state,
+        destination: action.value,
       };
     default:
       return state;
