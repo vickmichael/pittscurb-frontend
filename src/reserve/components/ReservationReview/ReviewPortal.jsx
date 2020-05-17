@@ -6,11 +6,9 @@ import {
   Header,
   InfoContainer,
   SectionHeader,
-  ButtonRow,
-  LeftButtonRow,
-  MapButton,
-  BarButton,
-  Small,
+  SummaryContainer,
+  UserInfoContainer,
+  SubmitButton,
 } from './ReviewPortalStyles';
 import {
   useParams
@@ -58,10 +56,12 @@ export default () => {
         <Header>
           Complete your reservation
         </Header>
-
-        <input type="text" placeholder={humanReadableTime(reservation.start) + " - " + humanReadableTime(reservation.end) + " today"} />
-        <input type="text" placeholder={"300ft walk from " + business.name} />
-
+        
+        <SummaryContainer>
+          <input type="text" placeholder={humanReadableTime(reservation.start) + " - " + humanReadableTime(reservation.end) + " today"} /><br />
+          <input type="text" placeholder={"300ft walk from " + business.name} />
+        </SummaryContainer>
+       
         <SectionHeader>
           Pickup Instructions from {business.name}:
         </SectionHeader>
@@ -74,26 +74,14 @@ export default () => {
           <li>Order number required</li>
           <li>ID required</li>
         </Bullets>
-        
-        <ButtonRow>
-          <LeftButtonRow>
-            <MapButton>
-              <Icon path={mdiPhone} />
-            </MapButton>
-            <MapButton>
-              <Icon path={mdiChat} />
-            </MapButton>
-          </LeftButtonRow>
 
-          <MapButton>
-            <Icon path={mdiDirections} />
-          </MapButton>
-        </ButtonRow>
-
-        <Small>Get in touch with {business.name}</Small>
-        <BarButton>I'm having trouble finding my spot</BarButton>
-        <BarButton>Cancel my reservation</BarButton>
-        <BarButton>Modify my reservation</BarButton>
+        <UserInfoContainer>
+          <form>
+            <input type="tel" placeholder="Your mobile number" /><br />
+            <input type="text" placeholder="Vehicle color, make, and model" /><br />
+            <SubmitButton>Reserve Now</SubmitButton>
+          </form>
+        </UserInfoContainer>
       </InfoContainer>
     </Container>
   );

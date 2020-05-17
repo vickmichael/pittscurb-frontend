@@ -19,6 +19,64 @@ export const InfoContainer = styled.div`
   padding: 1.25rem;
 `;
 
+export const SummaryContainer = styled.div`
+  
+  & input {
+    pointer-events: none;
+    max-width: 500px;
+    height: 3.125rem;
+    margin-bottom: .5rem;
+    padding: .875rem .75rem;
+    width: 100%;
+    
+    background: #FBFAFB;
+    border: 1px solid #BFBFBF;
+    box-sizing: border-box;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+`;
+
+export const UserInfoContainer = styled.div`
+  max-width: 500px
+
+  & form .dropdown-wrapper {
+    position: relative;
+    
+    > img {
+      position: absolute;
+      left: .75rem;
+      top: 17px;
+    }
+  }
+  
+  & form input {
+    height: 3.125rem;
+    margin-bottom: .5rem;
+    padding: .875rem .75rem;
+    max-width: 500px;
+    width: 100%;
+    
+    background: #FFFFFF;
+    border: 1px solid #BFBFBF;
+    box-sizing: border-box;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+`;
+
+export const SubmitButton = styled.button`
+  height: 50px;
+  max-width: 500px;
+  width: 100%;
+  
+  background: #8D1EF8;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1rem;
+`;
+
 export const Text = styled.p`
   margin: 0;
   font-size: 1.125rem;
@@ -100,7 +158,7 @@ export const LeftButtonRow = styled.div`
 
 export const BarButton = styled.button`
   width: 100%;
-  max-width: 1000px;
+  max-width: 500px;
   border: 1px solid ${colors.primary};
   color: ${colors.primary};
   background-color: transparent;
