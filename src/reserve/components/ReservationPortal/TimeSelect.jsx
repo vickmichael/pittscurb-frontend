@@ -1,18 +1,18 @@
 import  React from 'react';
 
-import { useDispatch } from 'react-redux';
 import clockSvg from '../../../common/svgs/clock.svg';
 import { getTimeSuggestions } from '../../utils/timeHelper';
+import { useDispatch, connect } from 'react-redux';
 
 const TimeSelect = () => {
   const dispatch = useDispatch();
 
   const reservationDuration = 20;
-  const times = getTimeSuggestions(reservationDuration);
-
+  const times = getTimeSuggestions(reservationDuration); 
+  
   const handleTimeChange = (e) => {
-    dispatch({ type: 'UPDATE_TIME', value: e.target.value });
-  };
+    dispatch({type: 'UPDATE_TIME', value: e.target.value});
+  }
 
   return (
     <div className="dropdown-wrapper">

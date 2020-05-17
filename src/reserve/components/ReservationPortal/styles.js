@@ -35,7 +35,7 @@ export const SearchSection = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-top: -7rem;
+  margin-top: -9rem;
   max-width: 85rem;
   padding: 0 114px;
   
