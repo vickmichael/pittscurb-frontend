@@ -6,6 +6,10 @@ import {
   Polygon,
   TileLayer,
 } from 'react-leaflet';
+import { Button } from '@material-ui/core';
+import { Link } from 'react-router-dom';
+import Icon from '@mdi/react';
+import { mdiArrowRight } from '@mdi/js';
 import {
   SearchControls,
 } from './ReservationSearchPortalStyles';
@@ -15,21 +19,34 @@ import TimeSelect from '../ReservationPortal/TimeSelect';
 
 // import { getMapCoords } from '../../utils/geoUtil';
 import { mapSources, zoom } from '../../../common/constants/map';
+import colors from '../../../common/constants/colors';
 
+const StyledMap = styled(Map)`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+
+  & .leaflet-tile-pane {
+    filter: grayscale(1) contrast(.5) brightness(1.2);
+  }
+`;
+
+const BottomControls = styled.div`
+  position: fixed;
+  bottom: 0rem;
+  left: 0rem;
+  width: 100%;
+  width: 100vw;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: stretch;
+  
+  padding: 1rem;
+`;
 export default () => {
-  const StyledMap = styled(Map)`
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: -1;
-
-    & .leaflet-tile-pane {
-      filter: grayscale(1) contrast(.5) brightness(1.2);
-    }
-  `;
-
   const mapLayerKeys = ['esriWorldImagery', 'Stamen_TonerLabels'];
   // const defaultMapCenter = [40.44, -79.99];
 
@@ -68,6 +85,17 @@ export default () => {
 
   return (
     <div>
+
+      <BottomControls>
+        <Button
+          variant="contained"
+          color="primary"
+          component={Link}
+          to="/confirm/1234"
+        >
+          Continue to reserve
+        </Button>
+      </BottomControls>
 
       <SearchControls>
         <form>
