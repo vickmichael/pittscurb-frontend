@@ -6,61 +6,63 @@ import {
   Wrapper,
 } from './SpotSearchCardStyles';
 
-import Autocomplete from '../../../common/components/Autocomplete';
+import { Link, useRouteMatch } from 'react-router-dom';
+
+import Autocomplete from './Autocomplete';
 import TimeSelect from './TimeSelect';
 
 const testSubmit = () => {
   console.log('Spot search submit button clicked');
 };
 
-const SpotSearchCard = () => (
-  <Wrapper>
-    <div className="top-section">
-      <h2>
-        Pitts
-        <span>Curb</span>
-      </h2>
+const SpotSearchCard = () => {
+  const match = useRouteMatch();
 
-      <h4>
-        What business are you picking up from?
-      </h4>
+  return (
+    <Wrapper>
+      <div className="top-section">
+        <h2>
+          Pitts
+          <span>Curb</span>
+        </h2>
 
-      <form onSubmit={testSubmit}>
+        <h4>
+          What business are you picking up from?
+        </h4>
 
-        <Autocomplete />
-        <TimeSelect />
+        <form onSubmit={testSubmit}>
 
-        <SubmitButton type="submit">
-          Find a spot
-        </SubmitButton>
-      </form>
-    </div>
+          <Autocomplete />
+          <TimeSelect />
 
-
-    <ExampleWrapper>
-      <ExampleHeader className="example-header">
-        Examples
-      </ExampleHeader>
-
-      <div className="example-item">
-        <span>Restaurant</span>
-        {' '}
-        - &quot;Mad Mex, Round Corner&quot;
+          <Link to={`${match.url}search`}>
+            <SubmitButton type="submit">
+              Find a spot
+            </SubmitButton>
+          </Link>
+        </form>
       </div>
 
-      <div className="example-item">
-        <span>Retail</span>
-        {' '}
-        - &quot;Brambler Boutique&quot;
-      </div>
 
-      <div className="example-item">
-        <span>Address</span>
-        {' '}
-        - &quot;502 E. Ohio St., Pittsburgh&quot;
-      </div>
-    </ExampleWrapper>
-  </Wrapper>
-);
+      <ExampleWrapper>
+        <ExampleHeader className="example-header">
+          Examples
+        </ExampleHeader>
+
+        <div className="example-item">
+          <span>Restaurant</span> - "Mad Mex, Round Corner"
+        </div>
+
+        <div className="example-item">
+          <span>Retail</span> - "Brambler Boutique"
+        </div>
+
+        <div className="example-item">
+          <span>Address</span> - "502 E. Ohio St., Pittsburgh"
+        </div>
+      </ExampleWrapper>
+    </Wrapper>
+  );
+};
 
 export default SpotSearchCard;
