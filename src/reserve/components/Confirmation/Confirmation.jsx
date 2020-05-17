@@ -31,6 +31,7 @@ const TEST_DATA = {
   end: '05-17-2020 16:20',
   parkingSpotLat: '36.3094989',
   parkingSpotLong: '-97.3855117',
+
 };
 
 const reservationById = (id) => ({
@@ -84,6 +85,7 @@ const getDatesFromTime = (timeStr) => {
 const Confirmation = () => {
   const { id } = useParams();
   const { destination, time } = useSelector((state) => state.spotSearch);
+  destination.international_phone_number = '+14129181875';
   const { start, end } = getDatesFromTime(time);
 
   const isToday = isReservationToday(start.toString());
