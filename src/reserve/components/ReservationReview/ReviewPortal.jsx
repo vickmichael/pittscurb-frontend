@@ -5,7 +5,6 @@ import {
   Description,
   Header,
   InfoContainer,
-  MiniMap,
   SectionHeader,
   ButtonRow,
   LeftButtonRow,
@@ -55,19 +54,14 @@ export default () => {
   return (
     <Container>
       <InfoContainer>
-        <Header>
-          You have a spot reserved from {humanReadableTime(reservation.start)} to {humanReadableTime(reservation.end)} today
-        </Header>
-        <Description>
-          We'll text a confirmation and any updates to (123) 321 4564
-        </Description>
 
-        <SectionHeader>
-          Parking Instructions:
-        </SectionHeader>
-        <Description>
-          {reservation.parkingInstructions}
-        </Description>
+        <Header>
+          Complete your reservation
+        </Header>
+
+        <input type="text" placeholder={humanReadableTime(reservation.start) + " - " + humanReadableTime(reservation.end) + " today"} />
+        <input type="text" placeholder={"300ft walk from " + business.name} />
+
         <SectionHeader>
           Pickup Instructions from {business.name}:
         </SectionHeader>
@@ -80,7 +74,7 @@ export default () => {
           <li>Order number required</li>
           <li>ID required</li>
         </Bullets>
-        <MiniMap></MiniMap>
+        
         <ButtonRow>
           <LeftButtonRow>
             <MapButton>
@@ -95,6 +89,7 @@ export default () => {
             <Icon path={mdiDirections} />
           </MapButton>
         </ButtonRow>
+
         <Small>Get in touch with {business.name}</Small>
         <BarButton>I'm having trouble finding my spot</BarButton>
         <BarButton>Cancel my reservation</BarButton>

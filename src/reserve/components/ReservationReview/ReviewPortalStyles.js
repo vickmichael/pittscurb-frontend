@@ -7,6 +7,7 @@ export const Container  = styled.div`
   flex-direction: column;
   width: 100vw;
   height: 100vh;
+  max-width = 1500px;
   overflow: scroll;
 `;
 
@@ -97,16 +98,9 @@ export const LeftButtonRow = styled.div`
   justify-content: space-between;
 `;
 
-
-export const MiniMap = styled.div`
-  width: 100%;
-  height: 18.875rem;
-  border-radius: 0.25rem;
-  background-color: ${colors.grayLight};
-`;
-
 export const BarButton = styled.button`
   width: 100%;
+  max-width: 1000px;
   border: 1px solid ${colors.primary};
   color: ${colors.primary};
   background-color: transparent;
