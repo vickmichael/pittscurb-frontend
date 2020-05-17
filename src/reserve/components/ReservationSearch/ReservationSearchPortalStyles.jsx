@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 
-  export const SearchControls = styled.div`
+export const SearchControls = styled.div`
     position: fixed;
     top: 1em;
     left: 1em;

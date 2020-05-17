@@ -103,7 +103,7 @@ export default () => (
       </div>
       <div className="copyright">
         &copy; PittsCurb 2020
-        </div>
+      </div>
     </Footer>
   </Wrapper>
 );

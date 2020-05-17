@@ -1,7 +1,12 @@
 import React from 'react';
 import Icon from '@mdi/react';
 import { mdiPhone, mdiChat, mdiDirections } from '@mdi/js';
-import ReservationStatus from './ReservationStatus';
+import {
+  useParams,
+} from 'react-router-dom';
+import moment from 'moment';
+import { useSelector } from 'react-redux';
+import { isMobile } from 'react-device-detect';
 import {
   Bullets,
   Container,
@@ -16,12 +21,7 @@ import {
   BarButton,
   Small,
 } from './styles';
-import {
-  useParams
-} from 'react-router-dom';
-import moment from 'moment';
-import { useSelector } from "react-redux";
-import { isMobile } from 'react-device-detect';
+import ReservationStatus from './ReservationStatus';
 
 
 const TEST_DATA = {
@@ -33,26 +33,24 @@ const TEST_DATA = {
   parkingSpotLong: '-97.3855117',
 };
 
-const reservationById = (id) => {
-  return {
-    parkingInstructions: 'Pull up to the curb behind the bus stop. Parallel parking.',
-    contactNumber: '+12345678900',
-    business: {
-      name: 'DiAnoia\'s Eatery',
-      phone: '+1234567890',
-      location: {
-        lat: '3',
-        long: '5',
-      },
-      pickupInstructions: 'Pull up to the curb behind the bus stop. Parallel parking. Call or text when you get here',
-    }
-  }
-};
+const reservationById = (id) => ({
+  parkingInstructions: 'Pull up to the curb behind the bus stop. Parallel parking.',
+  contactNumber: '+12345678900',
+  business: {
+    name: 'DiAnoia\'s Eatery',
+    phone: '+1234567890',
+    location: {
+      lat: '3',
+      long: '5',
+    },
+    pickupInstructions: 'Pull up to the curb behind the bus stop. Parallel parking. Call or text when you get here',
+  },
+});
 
 // if isCall is false, we'll use a sms: link instead of a tel:
 const contactBusiness = (phone, isCall = true) => {
   if (phone) {
-    const placeholderText = encodeURIComponent(`Hi, I'm here to pick up my takeout order!`);
+    const placeholderText = encodeURIComponent('Hi, I\'m here to pick up my takeout order!');
     const link = `${isCall ? 'tel' : 'sms'}:${phone}${isCall ? '' : `&body=${placeholderText}`}`;
     window.open(link);
   }
@@ -67,13 +65,9 @@ const openMapLink = (lat, long, desktopUrl) => {
   }
 };
 
-const humanReadableTime = (dateStr) => {
-  return moment(dateStr).format("h:mma");
-};
+const humanReadableTime = (dateStr) => moment(dateStr).format('h:mma');
 
-const humanReadableDate = (dateStr) => {
-  return moment(dateStr).format('L');
-};
+const humanReadableDate = (dateStr) => moment(dateStr).format('L');
 
 const isReservationToday = (dateStr) => {
   const today = moment();
@@ -82,7 +76,7 @@ const isReservationToday = (dateStr) => {
 
 const Confirmation = () => {
   const { id } = useParams();
-  const { destination, time} = useSelector(state => state.spotSearch);
+  const { destination, time } = useSelector((state) => state.spotSearch);
 
   const reservation = reservationById(id);
 
@@ -91,10 +85,14 @@ const Confirmation = () => {
 
   return (
     <Container>
-      <ReservationStatus start={TEST_DATA.start} end={TEST_DATA.end}/>
+      <ReservationStatus start={TEST_DATA.start} end={TEST_DATA.end} />
       <InfoContainer>
         <Header>
-          You {expired ? 'had' : 'have'} a spot reserved from
+          You
+          {' '}
+          {expired ? 'had' : 'have'}
+          {' '}
+          a spot reserved from
           &nbsp;
           {humanReadableTime(TEST_DATA.start)}
           &nbsp;

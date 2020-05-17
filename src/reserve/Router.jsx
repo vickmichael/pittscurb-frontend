@@ -8,9 +8,11 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
 import rootReducer from './reducers/rootReducer';
+import ReviewPortal from './components/ReservationReview/ReviewPortal';
 import ReservationPortal from './components/ReservationPortal/ReservationPortal';
 import ReservationSearchPortal from './components/ReservationSearch/ReservationSearchPortal';
 import Confirmation from './components/Confirmation/Confirmation';
+import { FourOhFour } from '../common/components';
 
 const store = createStore(
   rootReducer,
@@ -25,8 +27,10 @@ export default () => {
     <Provider store={store}>
       <Switch>
         <Route path={`${match.url}/`} exact component={ReservationPortal} />
-        <Route path={`${match.url}/search`} exact component={ReservationSearchPortal} />
-        <Route path={`${match.url}/confirm/:id`} exact component={Confirmation} />
+        <Route path={`${match.url}search`} exact component={ReservationSearchPortal} />
+        <Route path={`${match.url}review`} exact component={ReviewPortal} />
+        <Route path={`${match.url}confirm/:id`} exact component={Confirmation} />
+        <Route path="*" component={FourOhFour} />
       </Switch>
     </Provider>
   );
