@@ -102,7 +102,9 @@ export const MiniMap = styled.div`
   width: 100%;
   height: 18.875rem;
   border-radius: 0.25rem;
-  background-color: ${colors.grayLight};
+  background-image: url('sample_spot.png');
+  background-size: cover;
+  background-position: center;
 `;
 
 export const BarButton = styled.button`
