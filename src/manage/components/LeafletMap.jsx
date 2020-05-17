@@ -164,7 +164,7 @@ export default () => {
           : null
         }
 
-        {processCoordData.map((line, i) => {
+        {false && processCoordData.map((line, i) => {
           const spots = getParkingSpots(line, 0);
 
           return (
