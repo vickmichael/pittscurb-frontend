@@ -14,7 +14,7 @@ const StyledLogo = styled(Logo)`
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
-  background-image: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0), rgba(255,255,255,.2), rgba(255,255,255,1)), url('404.png');
+  background-image: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0), rgba(255,255,255,.2), rgba(255,255,255,1)), url('404.svg');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center bottom;
