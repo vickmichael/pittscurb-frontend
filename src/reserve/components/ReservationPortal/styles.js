@@ -69,10 +69,9 @@ export const SalesPoints = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 11rem;
-  padding: 0 10rem;
   
   & > h2 {
-    margin-bottom: 5.5rem;
+    margin-bottom: 2.75rem;
     margin-top: 0;
     max-width: 40rem;
     
@@ -86,7 +85,9 @@ export const SalesPoints = styled.div`
     align-items: flex-end;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: baseline;
     max-width: 90rem;
     width: 100%;
     
@@ -94,7 +95,7 @@ export const SalesPoints = styled.div`
       align-items: center;
       display: flex;
       flex-direction: column;
-      
+      margin: 2.75rem 3rem 0rem 3rem;
       text-align: center;
       
       > img {
@@ -114,22 +115,28 @@ export const SalesPoints = styled.div`
 
 export const Feedback = styled.div`
   align-items: center;
-  display:flex;
+  display: flex;
   flex-direction: column;
   margin-bottom: 8rem;
-  margin-top: 10rem;
+  margin-top: 9rem;
   width: 100%;
   
   & > .feedback-content {
     align-items: center;
     display:flex;
-    flex-direction: row;
+    flex-flow: row wrap;
+    justify-content: center;
     
     color: #4D4D4D;
     font-size: 1.25rem;
+
+    > .questions {
+      margin-top: 1rem;
+    }
     
     > .feedback-email {
       margin-left: .75rem;
+      margin-top: 1rem;
       padding: .5rem 1.75rem;
     
       background: #FFFFFF;
