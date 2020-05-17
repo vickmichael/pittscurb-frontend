@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Bullets,
   Container,
@@ -15,6 +15,8 @@ import {
 } from 'react-router-dom';
 import Icon from '@mdi/react';
 import { mdiPhone, mdiChat, mdiDirections } from '@mdi/js';
+
+import useFetch from '../../../common/utils/apiHooks';
 
 
 const reservationById = (id) => {
@@ -43,8 +45,35 @@ const humanReadableTime = (dateStr) => {
   return new Intl.DateTimeFormat('en-US', options).format(date);
 };
 
+const handleSubmit = () => {
+  const body = new Object();
+
+  body.countryCode = 1;
+  body.phoneNumber = 8322293597;
+  body.businessName = "APTEKA";
+  body.endTime = "12:00pm";
+  body.startTime = "11:30am";
+
+  const path = "reservation";
+  const method = "POST";
+
+  // const requestBody = JSON.stringify(body);
+  
+  // const response = useFetch("reservation", "POST", requestBody);
+
+  fetch(`http://service.pittscurb.com/${path}`, {
+      body: JSON.stringify(body),
+      method
+    })
+      .then((res) => res.json())
+      .then((res) => console.log(res));
+}
+
 export default () => {
   const { id } = useParams();
+  const state = useState();
+  
+
 
   const reservation = reservationById(id);
   const { business } = reservation;
@@ -76,7 +105,7 @@ export default () => {
         </Bullets>
 
         <UserInfoContainer>
-          <form onSubmit={handleSubmit()}>
+          <form onSubmit={()=> handleSubmit()}>
             <input id="phoneNumber" type="tel" placeholder="Your mobile number" /><br />
             <input id="carInfo" type="text" placeholder="Vehicle color, make, and model" /><br />
             <SubmitButton>Reserve Now</SubmitButton>
