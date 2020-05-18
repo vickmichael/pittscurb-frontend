@@ -162,7 +162,7 @@ export const Feedback = styled.div`
     font-size: 1.25rem;
 
     > .questions {
-      margin-top: 1rem;
+      margin-right: 1rem;
     }
     
     > .feedback-email {
