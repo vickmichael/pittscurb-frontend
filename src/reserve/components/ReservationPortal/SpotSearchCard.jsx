@@ -5,6 +5,7 @@ import {
   ExampleWrapper,
   SubmitButton,
   Wrapper,
+  Disclaimer,
 } from './SpotSearchCardStyles';
 
 
@@ -42,9 +43,13 @@ const SpotSearchCard = () => {
           </Link>
         </form>
       </div>
-
+      <Disclaimer>
+        This is a prototype, but we want your feedback below! You are not able to actually reserve parking.
+      </Disclaimer>
 
       <ExampleWrapper>
+
+
         <ExampleHeader className="example-header">
           Examples
         </ExampleHeader>

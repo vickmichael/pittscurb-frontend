@@ -99,3 +99,7 @@ export const ExampleWrapper = styled.div`
 export const ExampleHeader = styled.div`
   font-weight: bold;
 `;
+
+export const Disclaimer  = styled.p`
+  padding: 0 1.5rem;
+`;

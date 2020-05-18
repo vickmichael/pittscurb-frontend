@@ -16,6 +16,11 @@ import bestSpot from '../../../common/svgs/best_spot.svg';
 import hamburgerMagnify from '../../../common/svgs/hamburger_magnify.svg';
 import cellphoneCheckmark from '../../../common/svgs/cellphone_checkmark.svg';
 
+// TODO: Replace with better protection from email scraping that doesn't compromise accessibility
+const openEmailLink = () => {
+  window.open('mailto:hello@pittscurb.com', '_blank');
+};
+
 export default () => (
   <Wrapper>
     <Overlay>
@@ -89,11 +94,9 @@ export default () => (
           Questions? Feedback?
         </div>
 
-        <div className="feedback-email">
-          <a href="mailto:hello@pittscurb.com">
-            Email us at hello@pittscurb.com
-          </a>
-        </div>
+
+        <img src="/email.png" onClick={() => openEmailLink()}/>
+
       </div>
     </Feedback>
     <Footer>
