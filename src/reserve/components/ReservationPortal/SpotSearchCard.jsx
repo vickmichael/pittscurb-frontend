@@ -34,6 +34,7 @@ const SpotSearchCard = () => {
         <form onSubmit={testSubmit}>
 
           <Autocomplete />
+
           <TimeSelect />
 
           <Link to={`${match.url}search`}>
@@ -48,28 +49,20 @@ const SpotSearchCard = () => {
       </Disclaimer>
 
       <ExampleWrapper>
-
-
         <ExampleHeader className="example-header">
           Examples
         </ExampleHeader>
 
         <div className="example-item">
-          <span>Restaurant</span>
-          &nbsp;
-          - "Mad Mex, Round Corner"
+          <span>Restaurant</span> - "Mad Mex, Round Corner"
         </div>
 
         <div className="example-item">
-          <span>Retail</span>
-          &nbsp;
-          - "Brambler Boutique"
+          <span>Retail</span> - "Brambler Boutique"
         </div>
 
         <div className="example-item">
-          <span>Address</span>
-          &nbsp;
-          - "502 E. Ohio St., Pittsburgh"
+          <span>Address</span> - "502 E. Ohio St., Pittsburgh"
         </div>
       </ExampleWrapper>
     </Wrapper>

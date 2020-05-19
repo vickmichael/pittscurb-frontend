@@ -2,7 +2,7 @@
 /* eslint-disable import/prefer-default-export */
 import { useEffect, useState } from 'react';
 
-export default (path) => {
+const useFetch =  (path) => {
   const [response, setResponse] = useState();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState();
@@ -26,3 +26,5 @@ export default (path) => {
 
   return { loading, response, error };
 };
+
+export default useFetch;

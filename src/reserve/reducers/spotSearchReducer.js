@@ -1,7 +1,8 @@
 const initialState = {
   destination: [], // could store multiple destinations if we want to track history
   time: null,
-  phone_number: null
+  telephoneNumber: null,
+  vehicle: null,
 };
 
 const testState = {
@@ -346,12 +347,21 @@ const spotSearchReducer = (state = initialState, action) => {
         ...state,
         destination: action.value,
       };
+
     case 'UPDATE_TIME':
       console.log(`Time updated: ${action.value}`);
       return {
         ...state,
         time: action.value,
       };
+
+    case 'UPDATE_PHONE_AND_VEHICLE':
+      return {
+        ...state,
+        telephoneNumber: action.telephoneNumber,
+        vehicle: action.vehicle
+      }
+
     default:
       return state;
   }

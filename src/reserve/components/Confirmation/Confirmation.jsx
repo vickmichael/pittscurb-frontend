@@ -79,37 +79,33 @@ const getDatesFromTime = (timeStr) => {
   const now = moment();
   const start = moment(`${now.format('YYYY-MM-DD')} ${timeStr}`);
   let end = moment(`${now.format('YYYY-MM-DD')} ${timeStr}`).add(20, 'm');
+
   return { start, end };
 };
 
 const Confirmation = () => {
   const { id } = useParams();
-  const { destination, time } = useSelector((state) => state.spotSearch);
-  destination.international_phone_number = '+14129181875';
+  const { destination, time } = useSelector((state) => {
+    return state.spotSearch;
+  });
+
   const { start, end } = getDatesFromTime(time);
 
   const isToday = isReservationToday(start.toString());
   const expired = moment().isAfter(end);
+  const startTime = humanReadableTime(start.toString());
+  const endTime = humanReadableTime(end.toString());
+  const startDate = humanReadableDate(start.toString());
 
   return (
     <Container>
       <ReservationStatus start={start} end={end} />
+
       <InfoContainer>
         <Header>
-          You
-          {' '}
-          {expired ? 'had' : 'have'}
-          {' '}
-          a spot reserved from
-          &nbsp;
-          {humanReadableTime(start.toString())}
-          &nbsp;
-          to
-          &nbsp;
-          {humanReadableTime(end.toString())}
-          &nbsp;
-          {isToday ? 'today' : `on ${humanReadableDate(start.toString())}` }
+          You {expired ? 'had' : 'have'} a spot reserved from {startTime} to {endTime} {isToday ? 'today' : `on ${startDate}`}
         </Header>
+
         <Description>
           We'll text a confirmation and any updates to (123) 321 4564
         </Description>
@@ -117,50 +113,68 @@ const Confirmation = () => {
         <SectionHeader>
           Parking Instructions:
         </SectionHeader>
+
         <Description>
           {TEST_DATA.parkingInstructions}
         </Description>
+
         <SectionHeader>
-          Pickup Instructions from
-          &nbsp;
-          {destination.name}
-          :
+          Pickup Instructions from {destination.name}:
         </SectionHeader>
+
         <Description>
           {TEST_DATA.pickupInstructions}
         </Description>
+
         <Bullets>
           <li>We'll come to your vehicle</li>
           <li>
-            <a href={`tel:${destination.international_phone_number}`}>Call/text us</a>
-            &nbsp;
-            on arrival
+            <a href={`tel:${destination.international_phone_number}`}>Call/text us</a> on arrival
           </li>
-          <li>Order number required</li>
-          <li>ID required</li>
+          <li>
+            Order number required
+          </li>
+          <li>
+            ID required
+          </li>
         </Bullets>
+
         <MiniMap />
+
         <ButtonRow>
           <LeftButtonRow>
-            <MapButton onClick={() => contactBusiness(destination.international_phone_number)}>
+            <MapButton
+              onClick={() => contactBusiness(destination.international_phone_number)}
+            >
               <Icon path={mdiPhone} />
             </MapButton>
-            <MapButton onClick={() => contactBusiness(destination.international_phone_number, false)}>
+
+            <MapButton
+              onClick={() => contactBusiness(destination.international_phone_number, false)}
+            >
               <Icon path={mdiChat} />
             </MapButton>
           </LeftButtonRow>
 
-          <MapButton onClick={() => openMapLink(TEST_DATA.parkingSpotLat, TEST_DATA.parkingSpotLong, destination.url)}>
+          <MapButton
+            onClick={() => openMapLink(
+              TEST_DATA.parkingSpotLat,
+              TEST_DATA.parkingSpotLong,
+              destination.url
+            )}
+          >
             <Icon path={mdiDirections} />
           </MapButton>
         </ButtonRow>
+
         <Small>
-          Get in touch with
-          &nbsp;
-          {destination.name}
+          Get in touch with {destination.name}
         </Small>
+
         <BarButton>I'm having trouble finding my spot</BarButton>
+
         <BarButton>Cancel my reservation</BarButton>
+
         <BarButton>Modify my reservation</BarButton>
       </InfoContainer>
     </Container>

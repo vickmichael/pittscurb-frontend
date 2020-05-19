@@ -16,11 +16,10 @@ const TimeSelect = () => {
   };
 
   useEffect(() => {
-    if(time) {
+    if (time) {
       document.getElementById("selector").value = time;
     }
   }, [])
-  
 
   return (
     <div className="dropdown-wrapper">

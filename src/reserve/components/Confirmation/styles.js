@@ -108,12 +108,21 @@ export const MiniMap = styled.div`
 `;
 
 export const BarButton = styled.button`
-  width: 100%;
+  background: rgb(255, 255, 255, 0);
   border: 1px solid ${colors.primary};
-  color: ${colors.primary};
-  background-color: transparent;
   border-radius: 0.25rem;
+  color: ${colors.primary};
+  cursor: pointer;
+  font-size: 1rem;
   margin: 0.5rem 0;
   padding: 0.75rem;
-  font-size: 1rem;
+  width: 100%;
+  
+  transition: all .2s ease;
+  
+  &:hover {
+    background: ${colors.primary};
+    border-color: rgb(255, 255, 255, 0);
+    color: #fff;
+  }
 `;

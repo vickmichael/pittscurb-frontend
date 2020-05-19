@@ -47,8 +47,8 @@ export default () => {
       handlePlaceChange(autocomplete.getPlace());
     });
 
-    if(destination && destination.name && destination.formatted_address) {
-      document.getElementById("autocomplete").value = destination.name + ", " + destination.vicinity;
+    if (destination && destination.name && destination.formatted_address) {
+      document.getElementById("autocomplete").value = `${destination.name}, ${destination.vicinity}`;
     }
 
   }, [inputRef]);

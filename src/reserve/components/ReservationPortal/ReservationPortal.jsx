@@ -95,7 +95,7 @@ export default () => (
         </div>
 
 
-        <img src="/email.png" onClick={() => openEmailLink()}/>
+        <img src="/email.png" onClick={() => openEmailLink()} />
 
       </div>
     </Feedback>

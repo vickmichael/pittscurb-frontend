@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { baseRequest } from "../../../common/utils/apiRequests";
 import {
   useHistory,
   useParams,
@@ -39,33 +41,6 @@ const humanReadableTime = (dateStr) => {
   return new Intl.DateTimeFormat('en-US', options).format(date);
 };
 
-const handleSubmit = () => {
-  const body = new Object();
-
-  body.countryCode = 1;
-  body.phoneNumber = 6144064527;
-  body.businessName = 'APTEKA';
-  body.endTime = '12:00pm';
-  body.startTime = '11:30am';
-
-  const path = 'reservation';
-  const method = 'POST';
-
-  // const requestBody = JSON.stringify(body);
-
-  // const response = useFetch("reservation", "POST", requestBody);
-
-  fetch(`http://service.pittscurb.com/${path}`, {
-    headers: {
-      'Content-type': 'application/json'
-    },
-    body: JSON.stringify(body),
-    method,
-  })
-    .then((res) => res.json())
-    .then((res) => console.log(res));
-};
-
 const startTime = new Date();
 const endTime = new Date();
 
@@ -80,13 +55,47 @@ endTime.setMinutes(0);
 
 
 export default () => {
+  const dispatch = useDispatch();
+
   const { id } = useParams();
-  const state = useState();
+  const destinationDetails = useSelector(state => state.spotSearch.destination);
+  const [telephoneNumber, setTelephoneNumber] = useState('');
+  const [vehicle, setVehicle] = useState('');
 
   const history = useHistory();
 
   const reservation = reservationById(id);
   const { business } = reservation;
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // TODO: grab from Google Maps data once we have a new API key.
+    const reservationObject = {
+      countryCode: 1,
+      phoneNumber: 6144064527,
+      businessName: 'APTEKA',
+      endTime: '12:00pm',
+      startTime: '11:30am',
+    };
+
+    if (telephoneNumber && vehicle) {
+      baseRequest('http://service.pittscurb.com/reservation', {
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify(reservationObject),
+        method: 'POST',
+      }).then(() => {
+        dispatch({
+          type: 'UPDATE_PHONE_AND_VEHICLE',
+          telephoneNumber,
+          vehicle,
+        });
+        history.push('/confirm/123');
+      });
+    }
+  };
 
   return (
     <Container>
@@ -98,7 +107,7 @@ export default () => {
 
         <SummaryContainer>
           <input type="text" placeholder={`${humanReadableTime(startTime)} - ${humanReadableTime(endTime)} today`} />
-          <br />
+
           <input type="text" placeholder={`300ft walk from ${business.name}`} />
         </SummaryContainer>
 
@@ -123,15 +132,23 @@ export default () => {
         </Bullets>
 
         <UserInfoContainer>
-          <form onSubmit={() => {
-            handleSubmit();
-            history.push('/confirm/123');
-          }}
-          >
-            <input id="phoneNumber" type="tel" placeholder="Your mobile number" />
-            <br />
-            <input id="carInfo" type="text" placeholder="Vehicle color, make, and model" />
-            <br />
+          <form onSubmit={(e) => handleSubmit(e)}>
+            <input
+              id="phoneNumber"
+              type="tel"
+              value={telephoneNumber}
+              onChange={(e) => setTelephoneNumber(e.target.value)}
+              placeholder="Your mobile number"
+            />
+
+            <input
+              id="carInfo"
+              type="text"
+              value={vehicle}
+              onChange={(e) => setVehicle(e.target.value)}
+              placeholder="Vehicle color, make, and model"
+            />
+
             <SubmitButton>
               Reserve Now
             </SubmitButton>
